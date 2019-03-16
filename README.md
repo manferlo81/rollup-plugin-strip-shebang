@@ -1,5 +1,7 @@
 # rollup-plugin-strip-shebang
 
+[![CircleCI](https://circleci.com/gh/manferlo81/rollup-plugin-strip-shebang.svg?style=svg)](https://circleci.com/gh/manferlo81/rollup-plugin-strip-shebang)
+
 A Rollup.js plugin to remove and optionally extract shebang.
 
 > Note that it will only detect it if the shebang is the very first thing on the file.
