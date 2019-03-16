@@ -6,12 +6,14 @@ Note that it will only detect it if the shebang is the very first thing on the f
 ### Usage
 
 ```js
+// example.js
 #!what/ever/here/will be stripped
 
 console.log("Hi!");
 ```
 
 ```js
+// rollup.config.js
 import strip from "rollup-plugin-strip-shebang";
 
 export default {
@@ -39,15 +41,28 @@ export default {
 
 ### Options
 
-##### capture
-_capture?: (shebang: string) => void;_
+##### include
+```
+include: Array<string | RegExp> | string | RegExp | null
+```
+_a minimatch pattern for include filter_
 
-you can pass a capture function to get the stripped shebang in case you need it later.
+##### exclude
+```
+exclude: Array<string | RegExp> | string | RegExp | null
+```
+_a minimatch pattern for exclude filter_
+
+##### capture
+```
+capture: (shebang: string) => void
+```
+_you can pass a capture function to get the stripped shebang in case you need it later_
 
 ##### sourcemap
-_sourcemap: boolean = true_
-
-you can pass sourcemap = **false** to speed things up a bit if you dont need source maps.
-Anithing other than **false** will default to **true**.
+```
+sourcemap: boolean = true
+```
+_you can pass sourcemap = **false** to speed things up a bit if you don't need source maps. Anithing other than **false** will default to **true**_
 
 
