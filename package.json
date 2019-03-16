@@ -5,7 +5,15 @@
   "main": "dist/plugin.cjs.js",
   "module": "dist/plugin.es.js",
   "typings": "types",
-  "keywords": [],
+  "keywords": [
+    "rollup",
+    "plugin",
+    "rollup-plugin",
+    "shebang",
+    "hashbang",
+    "extract",
+    "strip"
+  ],
   "scripts": {
     "lint": "tslint src/**/*.ts",
     "pretest": "npm run build",
