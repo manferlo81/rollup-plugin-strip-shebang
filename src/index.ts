@@ -11,7 +11,7 @@ interface ExtractShebangOptions {
 
 type Map = SourceMap & { version: number };
 
-function extract({ include, exclude, capture, sourcemap }: ExtractShebangOptions = {}): Plugin {
+function extract({ include = [/\.(ts|js)/], exclude, capture, sourcemap }: ExtractShebangOptions = {}): Plugin {
 
   const reg = /^(#!.*)/;
   const exportSourcemap = sourcemap !== false;
