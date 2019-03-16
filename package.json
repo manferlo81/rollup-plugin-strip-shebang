@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-strip-shebang",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Rollup.js plugin to remove and optionally extract shebang.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/plugin.es.js",
