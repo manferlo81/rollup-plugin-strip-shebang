@@ -5,6 +5,8 @@ import { builtinModules } from "module";
 import ts from "rollup-plugin-typescript2";
 import buble from "rollup-plugin-buble";
 
+const sourcemap = true;
+
 /** @type {string[]} */
 const external = [...builtinModules];
 if (dependencies) {
@@ -14,9 +16,13 @@ if (peerDependencies) {
   external.push(...Object.keys(peerDependencies));
 }
 
-const tsconfigOverride = {};
+const tsconfigOverride = {
+  compilerOptions: {
+    sourceMap: sourcemap,
+  },
+};
 if (typings || types) {
-  tsconfigOverride.declarationDir = typings || types;
+  tsconfigOverride.compilerOptions.declarationDir = typings || types;
 }
 
 /** @type {import("rollup").RollupOptions} */
@@ -25,8 +31,8 @@ const config = {
   input: "src/index.ts",
 
   output: [
-    { file: main, format: "cjs", interop: false },
-    { file: pkgModule, format: "esm" },
+    { file: main, format: "cjs", sourcemap, interop: false },
+    { file: pkgModule, format: "esm", sourcemap },
   ],
 
   external,
