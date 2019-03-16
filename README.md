@@ -6,7 +6,6 @@ Note that it will only detect it if the shebang is the very first thing on the f
 ### Usage
 
 ```js
-// example.js this line
 #!what/ever/here/will be stripped
 
 console.log("Hi!");
@@ -28,6 +27,7 @@ export default {
     strip({
       capture(shebang) {
         console.log(shebang + " was stripped from the file content.");
+        // expected output
         // #!what/ever/here/will be stripped was stripped from the file content.
       },
       sourcemap: true
