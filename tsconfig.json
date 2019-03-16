@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "declaration": true,
+    "declarationDir": "types"
+  },
+  "include": [
+    "src/**/*.*"
+  ],
+  "exclude": [
+    "node_modules/**/*.*",
+    "types"
+  ]
+}

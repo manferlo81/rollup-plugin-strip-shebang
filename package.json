@@ -1,0 +1,43 @@
+{
+  "name": "rollup-plugin-strip-shebang",
+  "version": "1.0.0",
+  "description": "A Rollup.js plugin to remove and optionally extract shebang.",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/plugin.es.js",
+  "typings": "types",
+  "keywords": [],
+  "scripts": {
+    "lint": "tslint src/**/*.ts",
+    "pretest": "npm run build",
+    "test": "jest",
+    "dev": "rollup -cw",
+    "build": "npm run lint && rollup -c",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "magic-string": "^0.25.2"
+  },
+  "peerDependencies": {
+    "rollup": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.11.3",
+    "jest": "^24.5.0",
+    "rollup": "^1.6.0",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-typescript2": "^0.20.1",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.3333"
+  },
+  "author": "Manuel Fernandez <manferlo81@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manferlo81/rollup-plugin-strip-shebang.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manferlo81/rollup-plugin-strip-shebang/issues"
+  },
+  "homepage": "https://github.com/manferlo81/rollup-plugin-strip-shebang#readme",
+  "license": "MIT"
+}
