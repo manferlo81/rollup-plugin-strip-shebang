@@ -39,6 +39,10 @@
     "tslint": "^5.14.0",
     "typescript": "^3.3.3333"
   },
+  "files": [
+    "dist",
+    "types"
+  ],
   "author": "Manuel Fernandez <manferlo81@gmail.com>",
   "repository": {
     "type": "git",
