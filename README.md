@@ -66,4 +66,5 @@ _you can pass a capture function to get the stripped shebang in case you need it
 ```
 sourcemap: boolean = true
 ```
-_you can pass sourcemap = **false** to speed things up a bit if you don't need source maps. Anithing other than **false** will default to **true**. Note that you will get a warning if you set rollup to generate source maps and set this to **false**_
+_you can pass sourcemap = **false** to speed things up a bit if you don't need source maps. Anything other than **false** will default to **true**._
+> Note that you will get a warning if you set rollup to generate source maps and set this to **false**
