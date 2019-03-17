@@ -1,21 +1,29 @@
 # rollup-plugin-strip-shebang
 
-[![npm version](https://badge.fury.io/js/rollup-plugin-strip-shebang.svg)](https://badge.fury.io/js/rollup-plugin-strip-shebang) [![CircleCI](https://circleci.com/gh/manferlo81/rollup-plugin-strip-shebang.svg?style=svg)](https://circleci.com/gh/manferlo81/rollup-plugin-strip-shebang) [![Greenkeeper badge](https://badges.greenkeeper.io/manferlo81/rollup-plugin-strip-shebang.svg)](https://greenkeeper.io/) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg)](https://opensource.org/licenses/mit-license.php)
+[![CircleCI](https://circleci.com/gh/manferlo81/rollup-plugin-strip-shebang.svg?style=svg)](https://circleci.com/gh/manferlo81/rollup-plugin-strip-shebang) [![Greenkeeper badge](https://badges.greenkeeper.io/manferlo81/rollup-plugin-strip-shebang.svg)](https://greenkeeper.io/) [![npm version](https://badge.fury.io/js/rollup-plugin-strip-shebang.svg)](https://badge.fury.io/js/rollup-plugin-strip-shebang) [![dependencies Status](https://david-dm.org/manferlo81/rollup-plugin-strip-shebang/status.svg)](https://david-dm.org/manferlo81/rollup-plugin-strip-shebang) [![devDependencies Status](https://david-dm.org/manferlo81/rollup-plugin-strip-shebang/dev-status.svg)](https://david-dm.org/manferlo81/rollup-plugin-strip-shebang?type=dev) [![peerDependencies Status](https://david-dm.org/manferlo81/rollup-plugin-strip-shebang/peer-status.svg)](https://david-dm.org/manferlo81/rollup-plugin-strip-shebang?type=peer) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg)](https://opensource.org/licenses/mit-license.php)
 
 A Rollup.js plugin to remove and optionally extract shebang.
 
 > Note that it will only detect it if the shebang is the very first thing on the file.
 
+## Install
+
+`npm install rollup-plugin-strip-shebang`
+
+_or..._
+
+`yarn add rollup-plugin-strip-shebang`
+
 ## Usage
 
-```js
+```javascript
 // example.js
 #!what/ever/here/will be stripped
 
 console.log("Hi!");
 ```
 
-```js
+```javascript
 // rollup.config.js
 import strip from "rollup-plugin-strip-shebang";
 
@@ -68,3 +76,7 @@ sourcemap: boolean = true
 ```
 _you can pass sourcemap = **false** to speed things up a bit if you don't need source maps. Anything other than **false** will default to **true**._
 > Note that you will get a warning if you set rollup to generate source maps and set this to **false**
+
+## License
+
+MIT License
