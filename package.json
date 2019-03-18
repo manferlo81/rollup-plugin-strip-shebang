@@ -21,7 +21,7 @@
     "dev": "rollup -cw",
     "build": "npm run lint && rollup -c",
     "prepare": "npm run build",
-    "release": "npm version patch && git push && npm publish"
+    "release": "rm -rf dist && rm -rf types && npm publish"
   },
   "dependencies": {
     "magic-string": "^0.25.2",
