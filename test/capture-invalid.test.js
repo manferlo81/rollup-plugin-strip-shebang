@@ -1,40 +1,17 @@
-const { rollup } = require("rollup");
-const plugin = require("..");
+const generate = require("./generate");
 
-function generateExample(callback) {
+test("should get a warning on invalid capture option", (done) => {
 
-  let invalidWarning = false;
+  // Invalid capture option
+  const capture = 1;
 
-  rollup({
-    input: require.resolve("./example.js"),
-    plugins: [
-      plugin({
-        // invalid capture option
-        capture: 1,
-      }),
-    ],
-    onwarn(warning) {
-      invalidWarning = warning.plugin === "strip-shebang";
-    },
-  }).then((build) => {
-    build.generate({
-      format: "cjs",
-    }).then(() => {
-      callback(invalidWarning);
-    });
-  });
+  generate(({ warnings }) => {
 
-}
-
-test("should strip and capture shebang", (done) => {
-
-  generateExample((invalidWarning) => {
-
-    expect(invalidWarning).toBe(true);
+    expect(warnings.length).toBe(1);
+    expect(warnings[0].plugin).toBe("strip-shebang");
 
     done();
 
-  });
-
+  }, { capture });
 
 });
