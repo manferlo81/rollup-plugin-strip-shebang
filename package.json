@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "magic-string": "^0.25.2",
-    "rollup-pluginutils": "^2.4.1"
+    "rollup-pluginutils": "^2.5.0"
   },
   "peerDependencies": {
     "rollup": "^1.6.0"
