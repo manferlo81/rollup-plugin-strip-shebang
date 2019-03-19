@@ -5,7 +5,7 @@ import { createFilter } from "rollup-pluginutils";
 interface StripShebangOptions {
   include?: Array<string | RegExp> | string | RegExp | null;
   exclude?: Array<string | RegExp> | string | RegExp | null;
-  capture?: (shebang: string) => void;
+  capture?: Record<string, any> | ((shebang: string) => void);
   sourcemap?: boolean;
 }
 
@@ -43,8 +43,10 @@ const strip: PluginImpl<StripShebangOptions> = ({
 
       if (typeof capture === "function") {
         capture(shebang);
-      } else {
-        this.warn("capture option is not a function, it will be ignored");
+      } else if (typeof capture === "object") {
+        capture.shebang = shebang;
+      } else if (capture != null) {
+        this.warn("capture option is not a function nor an object, it will be ignored");
       }
 
       if (!sourcemap) {

@@ -3,15 +3,12 @@ const plugin = require("..");
 
 function generateExample(callback, sourcemap) {
 
-  let shebang;
+  let brokenSourcemap = false;
 
   rollup({
     input: require.resolve("./example.js"),
     plugins: [
       plugin({
-        capture(strippedShebang) {
-          shebang = strippedShebang;
-        },
         sourcemap,
       }),
     ],
@@ -21,13 +18,15 @@ function generateExample(callback, sourcemap) {
      * for the bundle but we want the plugin not to
      * generate one if we pass sourcemap = false
      */
-    onwarn() { },
+    onwarn(warning) {
+      brokenSourcemap = warning.code === "SOURCEMAP_BROKEN";
+    },
   }).then((build) => {
     build.generate({
       format: "cjs",
       sourcemap: true,
-    }).then(({ output: [{ code, map }] }) => {
-      callback({ code, map, shebang });
+    }).then(({ output: [{ map }] }) => {
+      callback(map, brokenSourcemap);
     });
   });
 
@@ -35,11 +34,12 @@ function generateExample(callback, sourcemap) {
 
 test("should respect sourcemap", (done) => {
 
-  generateExample(({ map }) => {
+  generateExample((map, brokenSourcemap) => {
 
     expect(map).toBeTruthy();
     expect(map.sourcesContent).toBeTruthy();
     expect(map.sourcesContent.length).toBe(0);
+    expect(brokenSourcemap).toBe(true);
 
     done();
 
@@ -50,11 +50,12 @@ test("should respect sourcemap", (done) => {
 
 test("should sourcemap defaults to true", (done) => {
 
-  generateExample(({ map }) => {
+  generateExample((map, brokenSourcemap) => {
 
     expect(map).toBeTruthy();
     expect(map.sourcesContent).toBeTruthy();
     expect(map.sourcesContent.length).toBeGreaterThan(0);
+    expect(brokenSourcemap).toBe(false);
 
     done();
 
