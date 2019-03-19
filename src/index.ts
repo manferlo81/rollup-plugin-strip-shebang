@@ -2,19 +2,24 @@ import MagicString, { SourceMap } from "magic-string";
 import { Plugin, PluginImpl } from "rollup";
 import { createFilter } from "rollup-pluginutils";
 
-interface ExtractShebangOptions {
+interface StripShebangOptions {
   include?: Array<string | RegExp> | string | RegExp | null;
   exclude?: Array<string | RegExp> | string | RegExp | null;
   capture?: (shebang: string) => void;
   sourcemap?: boolean;
 }
 
-type Map = SourceMap & { version: number };
+type SourceMapFixed = SourceMap & { version: number };
 
-function extract({ include = [/\.(ts|js)/], exclude, capture, sourcemap }: ExtractShebangOptions = {}): Plugin {
+const strip: PluginImpl<StripShebangOptions> = ({
+  include = [/\.(ts|js)/],
+  exclude,
+  capture,
+  sourcemap,
+}: StripShebangOptions = {}): Plugin => {
 
   const reg = /^(#!.*)/;
-  const exportSourcemap = sourcemap !== false;
+  sourcemap = sourcemap !== false;
 
   const filter = createFilter(include, exclude);
 
@@ -36,24 +41,28 @@ function extract({ include = [/\.(ts|js)/], exclude, capture, sourcemap }: Extra
 
       const shebang = match[0];
 
-      if (capture) {
+      if (typeof capture === "function") {
         capture(shebang);
+      } else {
+        this.warn("capture option is not a function, it will be ignored");
       }
 
-      const str = new MagicString(sourceCode);
-      str.overwrite(0, shebang.length, "");
+      if (!sourcemap) {
+        return sourceCode.substr(shebang.length);
+      }
 
-      const code = str.toString();
+      const ms = new MagicString(sourceCode);
+      ms.overwrite(0, shebang.length, "");
 
-      return exportSourcemap ? {
-        code,
-        map: str.generateMap({ hires: true }) as Map,
-      } : code;
+      return {
+        code: ms.toString(),
+        map: ms.generateMap({ hires: true }) as SourceMapFixed,
+      };
 
     },
 
   };
 
-}
+};
 
-export default extract as PluginImpl<ExtractShebangOptions>;
+export default strip;

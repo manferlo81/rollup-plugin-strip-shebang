@@ -16,13 +16,11 @@ if (peerDependencies) {
   external.push(...Object.keys(peerDependencies));
 }
 
-const tsconfigOverride = {
-  compilerOptions: {
-    sourceMap: sourcemap,
-  },
+const compilerOptions = {
+  sourceMap: sourcemap,
 };
 if (typings || types) {
-  tsconfigOverride.compilerOptions.declarationDir = typings || types;
+  compilerOptions.declarationDir = typings || types;
 }
 
 /** @type {import("rollup").RollupOptions} */
@@ -42,7 +40,9 @@ const config = {
       typescript,
       cacheRoot: ".cache",
       useTsconfigDeclarationDir: true,
-      tsconfigOverride,
+      tsconfigOverride: {
+        compilerOptions,
+      },
     }),
     buble({
       exclude: "node_modules/**",
