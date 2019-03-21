@@ -4,7 +4,7 @@
 
 A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally extract shebang.
 
-> Note that it will only be detected if the shebang is the very first thing on the file.
+> _Note that it will only be detected if the shebang is the very first thing on the file._
 
 ## Install
 
