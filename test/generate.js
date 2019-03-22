@@ -1,7 +1,11 @@
 const { rollup } = require("rollup");
 const plugin = require("..");
 
-module.exports = (callback, options = {}) => {
+/**
+ * @param {(result: { warnings: Array<string | import("rollup").RollupWarning>, code: string, map: import("magic-string").SourceMap }) => void} callback
+ * @param {{ include, exclude, capture, sourcemap }} [options]
+ */
+const generate = (callback, options) => {
 
   const result = {
     warnings: [],
@@ -27,3 +31,5 @@ module.exports = (callback, options = {}) => {
   });
 
 };
+
+module.exports = generate;
