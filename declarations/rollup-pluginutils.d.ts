@@ -1,8 +1,9 @@
-// rollup-plugin-utils desn't have a type declaration file
+// rollup-pluginutils desn't have a type declaration file
 
+declare type MinimatchPattern = Array<string | RegExp> | string | RegExp | null;
 declare type Filter = (id: any) => boolean;
 
 export function createFilter(
-  include?: Array<string | RegExp> | string | RegExp | null,
-  exclude?: Array<string | RegExp> | string | RegExp | null
+  include?: MinimatchPattern,
+  exclude?: MinimatchPattern,
 ): Filter;
