@@ -2,23 +2,27 @@ import MagicString, { SourceMap } from "magic-string";
 import { Plugin, PluginImpl } from "rollup";
 import { createFilter } from "rollup-pluginutils";
 
+type MinimatchPattern = Array<string | RegExp> | string | RegExp | null;
+type CaptureFunction = (shebang: string) => void;
+
 interface StripShebangOptions {
-  include?: Array<string | RegExp> | string | RegExp | null;
-  exclude?: Array<string | RegExp> | string | RegExp | null;
-  capture?: Record<string, any> | ((shebang: string) => void);
+  include?: MinimatchPattern;
+  exclude?: MinimatchPattern;
+  capture?: Record<string, any> | CaptureFunction;
   sourcemap?: boolean;
 }
 
+// https://github.com/Rich-Harris/magic-string/pull/155
 type SourceMapFixed = SourceMap & { version: number };
 
-const strip: PluginImpl<StripShebangOptions> = ({
+const stripShebang: PluginImpl<StripShebangOptions> = ({
   include = [/\.(ts|js)/],
   exclude,
   capture,
   sourcemap,
 }: StripShebangOptions = {}): Plugin => {
 
-  const reg = /^(#!.*)/;
+  const reg = /^#!.*/;
   sourcemap = sourcemap !== false;
 
   const filter = createFilter(include, exclude);
@@ -42,11 +46,11 @@ const strip: PluginImpl<StripShebangOptions> = ({
       const shebang = match[0];
 
       if (typeof capture === "function") {
-        capture(shebang);
+        (capture as CaptureFunction)(shebang);
       } else if (typeof capture === "object") {
         capture.shebang = shebang;
       } else if (capture != null) {
-        this.warn("capture option is not a function nor an object, it will be ignored");
+        this.warn("Capture option has to be a function or an object. It will be ignored.");
       }
 
       if (!sourcemap) {
@@ -67,4 +71,4 @@ const strip: PluginImpl<StripShebangOptions> = ({
 
 };
 
-export default strip;
+export default stripShebang;
