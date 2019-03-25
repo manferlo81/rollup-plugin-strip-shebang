@@ -41,6 +41,7 @@
     "typescript": "^3.3.3333"
   },
   "files": [
+    "src",
     "dist",
     "types"
   ],
