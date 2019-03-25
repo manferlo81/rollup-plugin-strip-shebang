@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "tslint src/**/*.ts",
     "pretest": "npm run build",
-    "test": "jest",
+    "test": "jest --color --verbose",
     "dev": "rollup -cw",
     "build": "npm run lint && rollup -c",
     "prepare": "npm run build",

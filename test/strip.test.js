@@ -1,14 +1,17 @@
 const generate = require("./generate");
 
-test("should strip shebang", (done) => {
+describe("strip shebang from file content", () => {
 
-  generate(({ code }) => {
+  test("should strip shebang", (done) => {
 
-    expect(code.substr(0, 2)).not.toBe("#!");
-    expect(code).not.toMatch(/#!/);
+    generate(({ code }) => {
 
-    done();
+      expect(code).not.toMatch(/#!/);
 
-  }, { sourcemap: false });
+      done();
+
+    });
+
+  });
 
 });
