@@ -19,9 +19,9 @@
     "pretest": "npm run build",
     "test": "jest --color --verbose",
     "dev": "rollup -cw",
-    "build": "npm run lint && rollup -c",
+    "build": "rm -rf dist && rm -rf types && npm run lint && rollup -c",
     "prepare": "npm run build",
-    "release": "rm -rf dist && rm -rf types && npm publish"
+    "release": "npm test && npm publish"
   },
   "dependencies": {
     "magic-string": "^0.25.2",

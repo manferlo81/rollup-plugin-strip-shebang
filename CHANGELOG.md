@@ -1,5 +1,9 @@
 # rollup-plugin-strip-shebang changelog
 
+## next
+* Test, source & types refactor
+* CircleCI config cleanup
+
 ## 1.1.0
 * Source refactoring
 * Capture shebang using a callback function or an object
