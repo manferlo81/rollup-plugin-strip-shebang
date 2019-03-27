@@ -38,7 +38,7 @@ const config = {
   plugins: [
     ts({
       typescript,
-      cacheRoot: ".cache",
+      cacheRoot: ".cache/rpt2",
       useTsconfigDeclarationDir: true,
       tsconfigOverride: {
         compilerOptions,
