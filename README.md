@@ -8,11 +8,15 @@ A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally 
 
 ## Install
 
-`npm install rollup-plugin-strip-shebang`
+```console
+npm install rollup-plugin-strip-shebang
+```
 
 _or..._
 
-`yarn add rollup-plugin-strip-shebang`
+```console
+yarn add rollup-plugin-strip-shebang
+```
 
 ## Usage
 
@@ -70,6 +74,7 @@ _a [minimatch](https://github.com/isaacs/minimatch) pattern for exclude filter,_
 _you can pass a capture_ `function` _or_ `object` _to get the **stripped shebang** in case you need it later_
 
 `capture: (shebang: string) => void`
+
 ```javascript
 let strippedShebang;
 ...
@@ -85,6 +90,7 @@ console.log(strippedShebang);
 ```
 
 `capture: object`
+
 ```javascript
 let capture = {};
 ...
@@ -102,6 +108,7 @@ console.log(capture.shebang);
 _you can pass_ `sourcemap = false` _to speed things up a bit if you don't need source maps. Anything other than_ `false` _will default to_ `true`_._
 
 `sourcemap: boolean = true`
+
 ```javascript
 ...
   output: {
@@ -115,6 +122,7 @@ _you can pass_ `sourcemap = false` _to speed things up a bit if you don't need s
   ]
 ...
 ```
+
 > _Note that you will get a warning if you set rollup to generate source maps and set this to_ `false`_._
 
 ## License
