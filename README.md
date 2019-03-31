@@ -22,7 +22,7 @@ yarn add rollup-plugin-strip-shebang
 
 ```javascript
 // example.js
-#!what/ever/here/will be stripped
+#!/usr/bin/env node
 
 console.log("Hi!");
 ```
