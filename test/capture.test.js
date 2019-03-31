@@ -11,7 +11,7 @@ describe("capture option", () => {
       shebang = strippedShebang;
     };
 
-    generate(() => {
+    generate("example1.js", () => {
 
       expect(shebang).toBe(expectedShebang);
 
@@ -25,7 +25,7 @@ describe("capture option", () => {
 
     const capture = {};
 
-    generate(() => {
+    generate("example1.js", () => {
 
       expect(capture.shebang).toBe(expectedShebang);
 
@@ -40,7 +40,7 @@ describe("capture option", () => {
     // Invalid capture option, it should generate a warning
     const capture = 1;
 
-    generate(({ warnings }) => {
+    generate("example1.js", ({ warnings }) => {
 
       expect(warnings).toHaveLength(1);
       expect(warnings[0].plugin).toBe("strip-shebang");

@@ -4,7 +4,7 @@ describe("sourcemap option", () => {
 
   test("should respect sourcemap and give a warning", (done) => {
 
-    generate(({ map, warnings }) => {
+    generate("example1.js", ({ map, warnings }) => {
 
       expect(map).toBeTruthy();
       expect(map.sourcesContent).toHaveLength(0);
@@ -20,7 +20,7 @@ describe("sourcemap option", () => {
 
   test("should sourcemap default to true and generate sourcemap", (done) => {
 
-    generate(({ map, warnings }) => {
+    generate("example1.js", ({ map, warnings }) => {
 
       expect(map).toBeTruthy();
       expect(map.sourcesContent).toBeTruthy();

@@ -4,7 +4,7 @@ describe("strip shebang from file content", () => {
 
   test("should strip shebang", (done) => {
 
-    generate(({ code }) => {
+    generate("example1.js", ({ code }) => {
 
       expect(code).not.toMatch(/#!/);
 
