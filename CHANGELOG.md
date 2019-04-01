@@ -1,7 +1,7 @@
 # rollup-plugin-strip-shebang changelog
 
-## next
-* Codecov setup
+## 1.1.2
+* Added Codecov
 
 ## 1.1.1
 * Test, source & types refactor
