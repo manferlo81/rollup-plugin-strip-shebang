@@ -4,10 +4,12 @@ import { builtinModules } from "module";
 
 import ts from "rollup-plugin-typescript2";
 import buble from "rollup-plugin-buble";
+import { terser } from "rollup-plugin-terser";
 
+const production = !process.env.ROLLUP_WATCH;
 const sourcemap = true;
 
-/** @type {string[]} */
+/** @type { string[] } */
 const external = [...builtinModules];
 if (dependencies) {
   external.push(...Object.keys(dependencies));
@@ -36,6 +38,7 @@ const config = {
   external,
 
   plugins: [
+
     ts({
       typescript,
       cacheRoot: ".cache/rpt2",
@@ -44,12 +47,20 @@ const config = {
         compilerOptions,
       },
     }),
+
     buble({
       exclude: "node_modules/**",
       target: {
         node: 0.12,
       },
     }),
+
+    production && terser({
+      sourcemap,
+      toplevel: true,
+      nameCache: {},
+    }),
+
   ],
 
 };
