@@ -8,13 +8,13 @@ A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally 
 
 ## Install
 
-```console
+```sh
 npm install rollup-plugin-strip-shebang
 ```
 
 _or..._
 
-```console
+```sh
 yarn add rollup-plugin-strip-shebang
 ```
 
