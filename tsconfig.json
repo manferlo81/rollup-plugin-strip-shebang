@@ -11,13 +11,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "declaration": true,
-    "declarationDir": "types",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "declarations/*"
-      ]
-    }
+    "declarationDir": "types"
   },
   "include": [
     "src/**/*.*"
