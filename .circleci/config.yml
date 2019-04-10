@@ -73,13 +73,19 @@ workflows:
 
   workflow:
     jobs:
+
       - unit-test
+          filters:
+            tags:
+              only: /.*/
+
       - upload-coverage:
           requires:
             - unit-test
           filters:
             branches:
               ignore: /greenkeeper/
+
       - publish-pkg:
           requires:
             - unit-test
