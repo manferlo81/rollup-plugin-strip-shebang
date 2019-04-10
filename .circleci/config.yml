@@ -3,14 +3,17 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.4
 
-jobs:
-
-  build:
-
+executors:
+  node:
     docker:
       - image: circleci/node:10
-
     working_directory: ~/repo
+
+jobs:
+
+  unit-test:
+
+    executor: node
 
     steps:
 
@@ -18,7 +21,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             - v1-dependencies-
 
       - run:
@@ -26,13 +29,19 @@ jobs:
           command: npm install
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
       - run:
           name: "Run Tests"
           command: npm test
+
+  upload-coverage:
+
+    executor: node
+
+    steps:
 
       - codecov/upload:
           file: coverage/*.json
@@ -42,4 +51,10 @@ workflows:
 
   workflow:
     jobs:
-      - build
+      - unit-test
+      - upload-coverage:
+          requires:
+            - unit-test
+          filters:
+            branches:
+              ignore: /greenkeeper/
