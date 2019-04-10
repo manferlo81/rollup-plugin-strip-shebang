@@ -91,6 +91,6 @@ workflows:
             - unit-test
           filters:
             tags:
-              only: /v\d+\.\d+\.\d+/
+              only: /^v\d+\.\d+\.\d+$/
             branches:
               ignore: /.*/
