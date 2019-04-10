@@ -37,14 +37,32 @@ jobs:
           name: "Run Tests"
           command: npm test
 
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
   upload-coverage:
 
     executor: node
 
     steps:
 
+      - attach_workspace:
+          at: ~/repo
+
       - codecov/upload:
           file: coverage/*.json
+
+  publish-pkg:
+    executor: node
+    steps:
+
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: "Publish to npm"
+          command: echo "comming soon..."
 
 workflows:
   version: 2
@@ -58,3 +76,11 @@ workflows:
           filters:
             branches:
               ignore: /greenkeeper/
+      - publish-pkg:
+          requires:
+            - unit-test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
