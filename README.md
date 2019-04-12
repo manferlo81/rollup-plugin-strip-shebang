@@ -4,7 +4,7 @@
 
 A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally extract shebang.
 
-> _Note that it will only be detected if the shebang is the very first thing on the file._
+> :warning: _Note that it will only be detected if the shebang is the very first thing on the file._
 
 ## Install
 
@@ -123,7 +123,7 @@ _you can pass_ `sourcemap = false` _to speed things up a bit if you don't need s
 ...
 ```
 
-> _Note that you will get a warning if you set rollup to generate source maps and set this to_ `false`_._
+> :warning: _Note that you will get a warning if you set rollup to generate source maps and set this to_ `false`_._
 
 ## License
 
