@@ -4,17 +4,27 @@ orbs:
   codecov: codecov/codecov@1.0.4
 
 executors:
-  node:
+  default:
     docker:
       - image: circleci/node:10
     working_directory: ~/repo
 
+commands:
+  npm-publish:
+    steps:
+
+      - run:
+          name: Login to npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+
+      - run:
+          name: Publish to npm
+          command: npm publish
+
 jobs:
 
   unit-test:
-
-    executor: node
-
+    executor: default
     steps:
 
       - checkout
@@ -42,9 +52,7 @@ jobs:
           paths: .
 
   upload-coverage:
-
-    executor: node
-
+    executor: default
     steps:
 
       - attach_workspace:
@@ -54,19 +62,13 @@ jobs:
           file: coverage/*.json
 
   publish-pkg:
-    executor: node
+    executor: default
     steps:
 
       - attach_workspace:
           at: ~/repo
 
-      - run:
-          name: Login to npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-
-      - run:
-          name: Publish to npm
-          command: npm publish
+      - npm-publish
 
 workflows:
   version: 2
