@@ -18,7 +18,7 @@
     "lint": "tslint src/**/*.ts",
     "pretest": "npm run build",
     "test": "jest",
-    "clean": "rm -rf dist && rm -rf types",
+    "clean": "rm -rf dist types coverage .cache",
     "dev": "rollup -cw",
     "build": "npm run lint && npm run clean && rollup -c"
   },
