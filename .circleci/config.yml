@@ -91,6 +91,7 @@ workflows:
               ignore: /greenkeeper/
 
       - publish-pkg:
+          context: NPM
           requires:
             - unit-test
           filters:
