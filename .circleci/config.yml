@@ -4,13 +4,13 @@ orbs:
   codecov: codecov/codecov@1.0.4
 
 executors:
-  default:
+  node:
     docker:
       - image: circleci/node:10
-    working_directory: ~/repo
+    working_directory: &cwd ~/repo
 
 commands:
-  npm-publish:
+  npm_publish:
     steps:
 
       - run:
@@ -23,8 +23,8 @@ commands:
 
 jobs:
 
-  unit-test:
-    executor: default
+  unit_test:
+    executor: node
     steps:
 
       - checkout
@@ -48,27 +48,27 @@ jobs:
           command: npm test
 
       - persist_to_workspace:
-          root: ~/repo
+          root: *cwd
           paths: .
 
-  upload-coverage:
-    executor: default
+  upload_coverage:
+    executor: node
     steps:
 
       - attach_workspace:
-          at: ~/repo
+          at: *cwd
 
       - codecov/upload:
           file: coverage/*.json
 
-  publish-pkg:
-    executor: default
+  publish_pkg:
+    executor: node
     steps:
 
       - attach_workspace:
-          at: ~/repo
+          at: *cwd
 
-      - npm-publish
+      - npm_publish
 
 workflows:
   version: 2
@@ -76,24 +76,24 @@ workflows:
   workflow:
     jobs:
 
-      - unit-test:
+      - unit_test:
           filters:
             tags:
               only: /.*/
             branches:
               only: /.*/
 
-      - upload-coverage:
+      - upload_coverage:
           requires:
-            - unit-test
+            - unit_test
           filters:
             branches:
               ignore: /greenkeeper/
 
-      - publish-pkg:
+      - publish_pkg:
           context: NPM
           requires:
-            - unit-test
+            - unit_test
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
