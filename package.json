@@ -20,8 +20,7 @@
     "test": "jest",
     "clean": "rm -rf dist && rm -rf types",
     "dev": "rollup -cw",
-    "build": "npm run lint && npm run clean && rollup -c",
-    "prepublishOnly": "npm test"
+    "build": "npm run lint && npm run clean && rollup -c"
   },
   "dependencies": {
     "magic-string": "^0.25.2",
