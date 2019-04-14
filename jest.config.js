@@ -4,7 +4,7 @@ module.exports = {
 
   collectCoverage: true,
   coverageDirectory: "coverage",
-  coverageReporters: process.env.CIRCLECI ? ["json"] : ["text"],
+  coverageReporters: process.env.CIRCLECI ? ["json", "text"] : ["text"],
   collectCoverageFrom: [
     "dist/**",
   ],
