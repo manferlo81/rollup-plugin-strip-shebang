@@ -22,9 +22,7 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
   sourcemap,
 }: StripShebangOptions = {}): Plugin => {
 
-  const reg = /^#!.*/;
-  sourcemap = sourcemap !== false;
-
+  const generateMap: boolean = sourcemap !== false;
   const filter = createFilter(include, exclude);
 
   return {
@@ -37,7 +35,8 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
         return;
       }
 
-      const match = sourceCode.match(reg);
+      const shebangReg = /^#!.*/;
+      const match = sourceCode.match(shebangReg);
 
       if (!match) {
         return;
@@ -53,7 +52,7 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
         this.warn("Capture option has to be a function or an object. It will be ignored.");
       }
 
-      if (!sourcemap) {
+      if (!generateMap) {
         return sourceCode.substr(shebang.length);
       }
 
