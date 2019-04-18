@@ -7,7 +7,7 @@ executors:
   node:
     docker:
       - image: circleci/node:10
-    working_directory: &cwd ~/repo
+    working_directory: &working_directory ~/repo
 
 commands:
   npm_publish:
@@ -35,7 +35,7 @@ jobs:
             - v1-dependencies-
 
       - run:
-          name: "Install Dependencies"
+          name: Install Dependencies
           command: npm install
 
       - save_cache:
@@ -44,11 +44,15 @@ jobs:
             - node_modules
 
       - run:
-          name: "Run Tests"
+          name: Build
+          command: npm run build
+
+      - run:
+          name: Run Tests
           command: npm test
 
       - persist_to_workspace:
-          root: *cwd
+          root: *working_directory
           paths: .
 
   upload_coverage:
@@ -56,7 +60,7 @@ jobs:
     steps:
 
       - attach_workspace:
-          at: *cwd
+          at: *working_directory
 
       - codecov/upload:
           file: coverage/*.json
@@ -66,7 +70,7 @@ jobs:
     steps:
 
       - attach_workspace:
-          at: *cwd
+          at: *working_directory
 
       - npm_publish
 
