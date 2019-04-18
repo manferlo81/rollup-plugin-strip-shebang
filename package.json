@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "tslint src/**/*.ts",
     "pretest": "npm run build",
-    "test": "jest",
+    "test": "jest --color",
     "clean": "rm -rf dist types coverage .cache",
     "dev": "bundlib -dw",
     "build": "npm run lint && npm run clean && bundlib"
