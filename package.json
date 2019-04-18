@@ -15,12 +15,11 @@
     "strip"
   ],
   "scripts": {
-    "lint": "tslint src/**/*.ts",
-    "pretest": "npm run build",
-    "test": "jest --color",
-    "clean": "rm -rf dist types coverage .cache",
+    "lint": "tslint src/**",
     "dev": "bundlib -dw",
-    "build": "npm run lint && npm run clean && bundlib"
+    "build": "npm run lint && bundlib",
+    "clean": "rm -rf dist types coverage .cache",
+    "test": "jest --color"
   },
   "dependencies": {
     "magic-string": "^0.25.2",
