@@ -1,3 +1,5 @@
+const CIRCLECI = !!process.env.CIRCLECI;
+
 module.exports = {
 
   testEnvironment: "node",
@@ -5,7 +7,7 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageReporters: [
-    process.env.CIRCLECI ? "json" : "lcov",
+    CIRCLECI ? "json" : "lcov",
     "text",
     "text-summary",
   ],
