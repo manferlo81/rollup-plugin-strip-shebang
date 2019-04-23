@@ -19,7 +19,8 @@
     "clean": "rm -rf dist types coverage",
     "dev": "bundlib -dw",
     "build": "npm run lint && bundlib",
-    "test": "jest --color"
+    "test": "jest --color",
+    "preversion": "npm run clean && npm run build && npm test"
   },
   "dependencies": {
     "magic-string": "^0.25.2",
