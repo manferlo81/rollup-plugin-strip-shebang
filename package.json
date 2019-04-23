@@ -16,9 +16,9 @@
   ],
   "scripts": {
     "lint": "tslint src/**",
+    "clean": "rm -rf dist types coverage",
     "dev": "bundlib -dw",
     "build": "npm run lint && bundlib",
-    "clean": "rm -rf dist types coverage .cache",
     "test": "jest --color"
   },
   "dependencies": {
