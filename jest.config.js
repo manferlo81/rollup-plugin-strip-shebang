@@ -1,4 +1,4 @@
-const CIRCLECI = !!process.env.CIRCLECI;
+const CI = !!process.env.CI;
 
 module.exports = {
 
@@ -7,7 +7,7 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageReporters: [
-    CIRCLECI ? "json" : "lcov",
+    CI ? "json" : "lcov",
     "text",
     "text-summary",
   ],
