@@ -7,7 +7,7 @@
   "bundlib": {
     "equals": true
   },
-  "typings": "types",
+  "typings": "types/index.d.ts",
   "keywords": [
     "rollup",
     "plugin",
