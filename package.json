@@ -18,25 +18,25 @@
     "strip"
   ],
   "scripts": {
-    "lint": "tslint src/**",
+    "lint": "tslint src/**/*.ts",
     "clean": "rm -rf dist types coverage",
     "dev": "bundlib -dw",
-    "build": "npm run lint && bundlib",
+    "build": "npm run lint && bundlib -d",
     "test": "jest --color",
     "preversion": "npm run clean && npm run build && npm test"
   },
   "dependencies": {
     "magic-string": "^0.25.2",
-    "rollup-pluginutils": "^2.6.0"
+    "rollup-pluginutils": "^2.7.1"
   },
   "peerDependencies": {
     "rollup": "^1.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^12.0.0",
-    "bundlib": "^0.2.1",
-    "jest": "^24.7.1",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.2",
+    "bundlib": "^0.2.5",
+    "jest": "^24.8.0",
     "tslint": "^5.16.0"
   },
   "files": [
