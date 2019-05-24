@@ -8,13 +8,13 @@ A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally 
 
 ## Install
 
-```sh
+```bash
 npm install rollup-plugin-strip-shebang
 ```
 
 _or..._
 
-```sh
+```bash
 yarn add rollup-plugin-strip-shebang
 ```
 
@@ -127,4 +127,4 @@ _you can pass_ `sourcemap = false` _to speed things up a bit if you don't need s
 
 ## License
 
-MIT License
+[MIT](LICENSE) &copy; Manuel Fernández
