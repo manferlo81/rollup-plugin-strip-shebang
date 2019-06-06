@@ -2,15 +2,11 @@ const generate = require("./generate");
 
 describe("strip shebang from file content", () => {
 
-  test("should strip shebang", (done) => {
+  test("should strip shebang", async () => {
 
-    generate("example1.js", ({ code }) => {
+    const { code } = await generate("example1.js");
 
-      expect(code).not.toMatch(/#!/);
-
-      done();
-
-    });
+    expect(code).not.toMatch(/#!/);
 
   });
 

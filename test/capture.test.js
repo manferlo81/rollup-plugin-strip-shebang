@@ -4,52 +4,37 @@ const expectedShebang = "#!/usr/bin/env node";
 
 describe("capture option", () => {
 
-  test("should capture shebang using a function", (done) => {
+  test('should throw on invalid capture option', () => {
+
+    expect(
+      generate("example1.js", {
+        capture: 100
+      })
+    ).rejects.toThrow();
+
+  })
+
+  test("should capture shebang using a function", async () => {
 
     let shebang;
     const capture = (strippedShebang) => {
       shebang = strippedShebang;
     };
 
-    generate("example1.js", () => {
+    await generate("example1.js", { capture });
 
-      expect(shebang).toBe(expectedShebang);
-
-      done();
-
-    }, { capture });
+    expect(shebang).toBe(expectedShebang);
 
   });
 
-  test("should capture shebang using an object", (done) => {
+  test("should capture shebang using an object", async () => {
 
     const capture = {};
 
-    generate("example1.js", () => {
+    await generate("example1.js", { capture });
 
-      expect(capture.shebang).toBe(expectedShebang);
-
-      done();
-
-    }, { capture });
+    expect(capture.shebang).toBe(expectedShebang);
 
   });
-
-  test("should get a warning on invalid capture option", (done) => {
-
-    // Invalid capture option, it should generate a warning
-    const capture = 1;
-
-    generate("example1.js", ({ warnings }) => {
-
-      expect(warnings).toHaveLength(1);
-      expect(warnings[0].plugin).toBe("strip-shebang");
-
-      done();
-
-    }, { capture });
-
-  });
-
 
 });

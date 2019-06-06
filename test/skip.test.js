@@ -2,33 +2,21 @@ const generate = require("./generate");
 
 describe("skip", () => {
 
-  test("skip files without shebang", (done) => {
+  test("skip files without shebang", async () => {
 
-    generate("example2.js", () => {
-
-      done();
-
-    });
+    await generate("example2.js");
 
   });
 
-  test("skip files using include", (done) => {
+  test("skip files using include", async () => {
 
-    generate("example2.js", () => {
-
-      done();
-
-    }, { include: /anyfile\.js/ });
+    await generate("example2.js", { include: /anyfile\.js/ });
 
   });
 
-  test("skip files using exclude", (done) => {
+  test("skip files using exclude", async () => {
 
-    generate("example2.js", () => {
-
-      done();
-
-    }, { exclude: /example2\.js/ });
+    await generate("example2.js", { exclude: /example2\.js/ });
 
   });
 

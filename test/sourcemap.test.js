@@ -2,35 +2,27 @@ const generate = require("./generate");
 
 describe("sourcemap option", () => {
 
-  test("should respect sourcemap and give a warning", (done) => {
+  test("should respect sourcemap and give a warning", async () => {
 
-    generate("example1.js", ({ map, warnings }) => {
+    const { map, warnings } = await generate("example1.js", { sourcemap: false });
 
-      expect(map).toBeTruthy();
-      expect(map.sourcesContent).toHaveLength(0);
+    expect(map).toBeTruthy();
+    expect(map.sourcesContent).toHaveLength(0);
 
-      expect(warnings).toHaveLength(1);
-      expect(warnings[0].code).toBe("SOURCEMAP_BROKEN");
-
-      done();
-
-    }, { sourcemap: false });
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0].code).toBe("SOURCEMAP_BROKEN");
 
   });
 
-  test("should sourcemap default to true and generate sourcemap", (done) => {
+  test("should sourcemap default to true and generate sourcemap", async () => {
 
-    generate("example1.js", ({ map, warnings }) => {
+    const { map, warnings } = await generate("example1.js");
 
-      expect(map).toBeTruthy();
-      expect(map.sourcesContent).toBeTruthy();
-      expect(map.sourcesContent.length).toBeGreaterThan(0);
+    expect(map).toBeTruthy();
+    expect(map.sourcesContent).toBeTruthy();
+    expect(map.sourcesContent.length).toBeGreaterThan(0);
 
-      expect(warnings).toHaveLength(0);
-
-      done();
-
-    });
+    expect(warnings).toHaveLength(0);
 
   });
 

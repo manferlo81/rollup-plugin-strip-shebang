@@ -1,8 +1,10 @@
 # rollup-plugin-strip-shebang changelog
 
-## 1.1.21 (07-06-2019)
+## 1.2.0 (07-06-2019)
 
+* throw on invalid capture
 * dependencies updated
+* test refactoring
 
 ## 1.1.20 (01-06-2019)
 

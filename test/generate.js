@@ -2,34 +2,34 @@ const { rollup } = require("rollup");
 const plugin = require("..");
 
 /**
- * @param {string} input
- * @param {(result: { warnings: Array<string | import("rollup").RollupWarning>, code: string, map: import("magic-string").SourceMap }) => void} callback
+ * @param { string } input
  * @param {{ include, exclude, capture, sourcemap }} [options]
+ * @returns { Promise<{code, map, warnings}> }
  */
-const generate = (input, callback, options) => {
+const generate = async (input, options) => {
 
-  const result = {
-    warnings: [],
-  };
+  const warnings = [];
 
-  rollup({
+  const build = await rollup({
     input: require.resolve(`./${input}`),
     plugins: [
       plugin(options),
     ],
     onwarn(warning) {
-      result.warnings.push(warning);
+      warnings.push(warning);
     },
-  }).then((build) => {
-    build.generate({
-      format: "esm",
-      sourcemap: true,
-    }).then(({ output: [{ code, map }] }) => {
-      result.code = code;
-      result.map = map;
-      callback(result);
-    });
   });
+
+  const { output: [{ code, map }] } = await build.generate({
+    format: "esm",
+    sourcemap: true,
+  });
+
+  return {
+    warnings,
+    code,
+    map
+  }
 
 };
 
