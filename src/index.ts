@@ -8,12 +8,16 @@ type CaptureFunction = (shebang: string) => void;
 interface StripShebangOptions {
   include?: MinimatchPattern;
   exclude?: MinimatchPattern;
-  capture?: Record<string, any> | CaptureFunction;
+  capture?: Record<string, any> | CaptureFunction | null;
   sourcemap?: boolean;
 }
 
 // https://github.com/Rich-Harris/magic-string/pull/155
 type SourceMapFixed = SourceMap & { version: number };
+
+function isFunction(obj: unknown): obj is CaptureFunction {
+  return typeof obj === "function";
+}
 
 const stripShebang: PluginImpl<StripShebangOptions> = ({
   include = [/\.(ts|js)/],
@@ -21,6 +25,10 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
   capture,
   sourcemap,
 }: StripShebangOptions = {}): Plugin => {
+
+  if (capture != null && capture && !isFunction(capture) && (typeof capture !== "object")) {
+    throw new TypeError(`${capture} has to be a function or an object.`);
+  }
 
   const generateMap: boolean = sourcemap !== false;
   const filter = createFilter(include, exclude);
@@ -44,12 +52,10 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
 
       const shebang = match[0];
 
-      if (typeof capture === "function") {
-        (capture as CaptureFunction)(shebang);
-      } else if (typeof capture === "object") {
+      if (isFunction(capture)) {
+        capture(shebang);
+      } else if (capture) {
         capture.shebang = shebang;
-      } else if (capture != null) {
-        this.warn("Capture option has to be a function or an object. It will be ignored.");
       }
 
       if (!generateMap) {
