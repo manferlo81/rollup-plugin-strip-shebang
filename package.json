@@ -27,15 +27,15 @@
   },
   "dependencies": {
     "magic-string": "^0.25.2",
-    "rollup-pluginutils": "^2.8.0"
+    "rollup-pluginutils": "^2.8.1"
   },
   "peerDependencies": {
     "rollup": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.4",
-    "bundlib": "^0.4.1",
+    "@types/node": "^12.0.6",
+    "bundlib": "^0.5.1",
     "jest": "^24.8.0",
     "tslint": "^5.17.0"
   },
