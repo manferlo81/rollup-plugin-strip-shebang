@@ -127,4 +127,4 @@ _you can pass_ `sourcemap = false` _to speed things up a bit if you don't need s
 
 ## License
 
-[MIT](LICENSE) &copy; Manuel Fernández
+[MIT](LICENSE) &copy; [Manuel Fernández](https://github.com/manferlo81)
