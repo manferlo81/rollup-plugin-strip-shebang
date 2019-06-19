@@ -1,5 +1,9 @@
 # rollup-plugin-strip-shebang changelog
 
+## 1.2.1 (19-06-2019)
+
+* dependencies updated
+
 ## 1.2.0 (07-06-2019)
 
 * throw on invalid capture
