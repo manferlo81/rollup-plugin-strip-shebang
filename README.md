@@ -4,18 +4,12 @@
 
 A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally extract shebang.
 
-> :warning: _Note that it will only be detected if the shebang is the very first thing on the file._
+> :warning: *Shebang will only be detected if it's the very first thing on the file.*
 
 ## Install
 
 ```bash
-npm install rollup-plugin-strip-shebang
-```
-
-_or..._
-
-```bash
-yarn add rollup-plugin-strip-shebang
+npm i rollup-plugin-strip-shebang
 ```
 
 ## Usage
@@ -29,19 +23,19 @@ console.log("Hi!");
 
 ```javascript
 // rollup.config.js
-import strip from "rollup-plugin-strip-shebang";
+import stripShebang from "rollup-plugin-strip-shebang";
 
 export default {
 
   input: "example.js",
 
   output: {
-    file: "dist/lib.js",
+    file: "bin/cli.js",
     format: "cjs"
   },
 
   plugins: [
-    strip()
+    stripShebang()
   ]
 
 };
@@ -49,47 +43,71 @@ export default {
 
 ## Features
 
-* [x] Target file filtering _(see [include](#include) & [exclude](#exclude))_
-* [x] Capture stripped shebang _(see [capture](#capture) option)_
-* [x] Sourcemap support _(see [sourcemap](#sourcemap) option)_
+* [x] Target file filtering *(see [include](#include) & [exclude](#exclude))*
+* [x] Capture stripped shebang *(see [capture](#capture) option)*
+* [x] Sourcemap support *(see [sourcemap](#sourcemap) option)*
 
 ## Options
 
-_All plugin options are optional._
+*All plugin options are optional.*
 
-#### include
+### include
 
-_a [minimatch](https://github.com/isaacs/minimatch) pattern for include filter,_ [_see also_ `createFilter` _documentation_](https://github.com/rollup/rollup-pluginutils#createfilter)
+*a [minimatch](https://github.com/isaacs/minimatch) pattern for include filter,* [*see* `createFilter` *documentation*](https://github.com/rollup/rollup-pluginutils#createfilter)*.*
 
-`include: Array<string | RegExp> | string | RegExp | null`
+***syntax***
 
-#### exclude
+```typescript
+include: Array<string | RegExp> | string | RegExp | null;
+```
 
-_a [minimatch](https://github.com/isaacs/minimatch) pattern for exclude filter,_ [_see also_ `createFilter` _documentation_](https://github.com/rollup/rollup-pluginutils#createfilter)
+### exclude
 
-`exclude: Array<string | RegExp> | string | RegExp | null`
+*a [minimatch](https://github.com/isaacs/minimatch) pattern for exclude filter,* [*see* `createFilter` *documentation*](https://github.com/rollup/rollup-pluginutils#createfilter)*.*
 
-#### capture
+***syntax***
 
-_you can pass a capture_ `function` _or_ `object` _to get the **stripped shebang** in case you need it later_
+```typescript
+exclude: Array<string | RegExp> | string | RegExp | null;
+```
 
-`capture: (shebang: string) => void`
+### capture
+
+*You can pass a capture* `function` *or* `object` *to get the stripped shebang in case you need it later.*
+
+#### function
+
+***syntax***
+
+```typescript
+capture: (shebang: string) => void;
+```
+
+***example***
 
 ```javascript
-let strippedShebang;
+let shebang;
 ...
   plugins: [
     strip({
-      capture(shebang) {
-        strippedShebang = shebang;
+      capture(capturedShebang) {
+        shebang = capturedShebang;
       },
     }),
   ]
 ...
-console.log(strippedShebang);
+console.log(shebang);
 ```
 
-`capture: object`
+#### object
+
+***syntax***
+
+```typescript
+capture: Object;
+```
+
+***example***
 
 ```javascript
 let capture = {};
@@ -103,11 +121,17 @@ let capture = {};
 console.log(capture.shebang);
 ```
 
-#### sourcemap
+### sourcemap
 
-_you can pass_ `sourcemap = false` _to speed things up a bit if you don't need source maps. Anything other than_ `false` _will default to_ `true`_._
+*You can pass* `sourcemap: false` *to speed things up a bit if you don't need source maps. Anything other than* `false` *will default to* `true`*.*
 
-`sourcemap: boolean = true`
+***syntax***
+
+```typescript
+sourcemap: boolean = true;
+```
+
+***example***
 
 ```javascript
 ...
@@ -123,7 +147,7 @@ _you can pass_ `sourcemap = false` _to speed things up a bit if you don't need s
 ...
 ```
 
-> :warning: _Note that you will get a warning if you set rollup to generate source maps and set this to_ `false`_._
+> :warning: *Note that you will get a warning if you set rollup to generate source maps and set this to* `false`*.*
 
 ## License
 
