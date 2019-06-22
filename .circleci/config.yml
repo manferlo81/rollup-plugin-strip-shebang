@@ -81,7 +81,7 @@ workflows:
               only: /master/
 
       - publish_pkg:
-          context: NPM
+          context: npm
           requires:
             - unit_test
           filters:
