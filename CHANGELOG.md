@@ -1,5 +1,10 @@
 # rollup-plugin-strip-shebang changelog
 
+## 1.2.3
+*25-06-2019*
+
+* dependencies updated
+
 ## 1.2.2
 *22-06-2019*
 
