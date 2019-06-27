@@ -1,4 +1,4 @@
-const { main } = require('./package.json')
+const { main } = require("./package.json");
 const CI = !!process.env.CI;
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
   testEnvironment: "node",
   browser: false,
 
-  cacheDirectory: ".cache/jest",
+  cacheDirectory: "node_modules/.cache/jest",
 
   collectCoverage: true,
   collectCoverageFrom: [
