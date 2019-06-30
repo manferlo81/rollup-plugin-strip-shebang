@@ -4,8 +4,6 @@
 
 A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally extract shebang.
 
-> :warning: *Shebang will only be detected if it's the very first thing on the file.*
-
 ## Install
 
 ```bash
@@ -49,25 +47,14 @@ export default {
 
 ## Options
 
-*All plugin options are optional.*
+### include / exclude
 
-### include
-
-*a [minimatch](https://github.com/isaacs/minimatch) pattern for include filter,* [*see* `createFilter` *documentation*](https://github.com/rollup/rollup-pluginutils#createfilter)*.*
+*[minimatch](https://github.com/isaacs/minimatch) pattern to be used as filter,* [*see* `createFilter` *documentation*](https://github.com/rollup/rollup-pluginutils#createfilter)*.*
 
 ***syntax***
 
 ```typescript
 include: Array<string | RegExp> | string | RegExp | null;
-```
-
-### exclude
-
-*a [minimatch](https://github.com/isaacs/minimatch) pattern for exclude filter,* [*see* `createFilter` *documentation*](https://github.com/rollup/rollup-pluginutils#createfilter)*.*
-
-***syntax***
-
-```typescript
 exclude: Array<string | RegExp> | string | RegExp | null;
 ```
 
