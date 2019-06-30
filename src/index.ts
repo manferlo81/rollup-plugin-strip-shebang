@@ -1,3 +1,4 @@
+import isCallable from "is-callable";
 import MagicString, { SourceMap } from "magic-string";
 import { Plugin, PluginImpl } from "rollup";
 import { createFilter } from "rollup-pluginutils";
@@ -15,19 +16,27 @@ interface StripShebangOptions {
 // https://github.com/Rich-Harris/magic-string/pull/155
 type SourceMapFixed = SourceMap & { version: number };
 
-function isFunction(obj: unknown): obj is CaptureFunction {
-  return typeof obj === "function";
-}
+function stripShebang(options: StripShebangOptions = {}): Plugin {
 
-const stripShebang: PluginImpl<StripShebangOptions> = ({
-  include = [/\.(ts|js)/],
-  exclude,
-  capture,
-  sourcemap,
-}: StripShebangOptions = {}): Plugin => {
+  const {
+    include = /\.[jt]s$/,
+    exclude,
+    capture,
+    sourcemap,
+  } = options;
 
-  if (capture != null && capture && !isFunction(capture) && (typeof capture !== "object")) {
-    throw new TypeError(`${capture} has to be a function or an object.`);
+  const captureShebang = !capture
+    ? null
+    : isCallable(capture)
+      ? capture
+      : (typeof capture === "object")
+        ? (captured: string) => {
+          capture.shebang = captured;
+        }
+        : null;
+
+  if (capture != null && !captureShebang) {
+    throw new TypeError(`${capture} is not a function or object`);
   }
 
   const generateMap: boolean = sourcemap !== false;
@@ -43,8 +52,7 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
         return;
       }
 
-      const shebangReg = /^#!.*/;
-      const match = sourceCode.match(shebangReg);
+      const match = sourceCode.match(/^#!.*/);
 
       if (!match) {
         return;
@@ -52,18 +60,15 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
 
       const shebang = match[0];
 
-      if (isFunction(capture)) {
-        capture(shebang);
-      } else if (capture) {
-        capture.shebang = shebang;
+      if (captureShebang) {
+        captureShebang(shebang);
       }
 
       if (!generateMap) {
         return sourceCode.substr(shebang.length);
       }
 
-      const ms = new MagicString(sourceCode);
-      ms.overwrite(0, shebang.length, "");
+      const ms = new MagicString(sourceCode).overwrite(0, shebang.length, "");
 
       return {
         code: ms.toString(),
@@ -74,6 +79,6 @@ const stripShebang: PluginImpl<StripShebangOptions> = ({
 
   };
 
-};
+}
 
-export default stripShebang;
+export default (stripShebang as PluginImpl<StripShebangOptions>);
