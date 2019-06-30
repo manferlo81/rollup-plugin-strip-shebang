@@ -1,9 +1,10 @@
 # rollup-plugin-strip-shebang changelog
 
 ## 1.2.3
-*27-06-2019*
+*30-06-2019*
 
 * dependencies updated
+* `ts-jest` for typescript test
 
 ## 1.2.2
 *22-06-2019*

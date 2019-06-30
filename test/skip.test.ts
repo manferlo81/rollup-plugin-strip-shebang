@@ -1,4 +1,4 @@
-const generate = require("./generate");
+import generate from "./tools/generate";
 
 describe("skip", () => {
 

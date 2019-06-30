@@ -1,4 +1,6 @@
-const generate = require("./generate");
+import { SourceMap } from "magic-string";
+import { RollupWarning } from "rollup";
+import generate from "./tools/generate";
 
 describe("sourcemap option", () => {
 
@@ -7,10 +9,13 @@ describe("sourcemap option", () => {
     const { map, warnings } = await generate("example1.js", { sourcemap: false });
 
     expect(map).toBeTruthy();
-    expect(map.sourcesContent).toHaveLength(0);
+
+    const sourceMap = map as SourceMap;
+
+    expect(sourceMap.sourcesContent).toHaveLength(0);
 
     expect(warnings).toHaveLength(1);
-    expect(warnings[0].code).toBe("SOURCEMAP_BROKEN");
+    expect((warnings[0] as RollupWarning).code).toBe("SOURCEMAP_BROKEN");
 
   });
 
@@ -19,8 +24,11 @@ describe("sourcemap option", () => {
     const { map, warnings } = await generate("example1.js");
 
     expect(map).toBeTruthy();
-    expect(map.sourcesContent).toBeTruthy();
-    expect(map.sourcesContent.length).toBeGreaterThan(0);
+
+    const sourceMap = map as SourceMap;
+
+    expect(sourceMap.sourcesContent).toBeTruthy();
+    expect(sourceMap.sourcesContent.length).toBeGreaterThan(0);
 
     expect(warnings).toHaveLength(0);
 

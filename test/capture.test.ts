@@ -1,23 +1,19 @@
-const generate = require("./generate");
+import generate from "./tools/generate";
 
 const expectedShebang = "#!/usr/bin/env node";
 
 describe("capture option", () => {
 
-  test('should throw on invalid capture option', () => {
+  test("should throw on invalid capture option", () => {
 
-    expect(
-      generate("example1.js", {
-        capture: 100
-      })
-    ).rejects.toThrow();
+    expect(generate("example1.js", { capture: 100 as any })).rejects.toThrow();
 
-  })
+  });
 
   test("should capture shebang using a function", async () => {
 
     let shebang;
-    const capture = (strippedShebang) => {
+    const capture = (strippedShebang: string) => {
       shebang = strippedShebang;
     };
 
@@ -29,7 +25,7 @@ describe("capture option", () => {
 
   test("should capture shebang using an object", async () => {
 
-    const capture = {};
+    const capture: Record<string, string> = {};
 
     await generate("example1.js", { capture });
 
