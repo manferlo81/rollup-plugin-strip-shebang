@@ -1,6 +1,4 @@
-
-import { SourceMap } from "magic-string";
-import { rollup, RollupWarning } from "rollup";
+import { rollup, RollupWarning, SourceMap } from "rollup";
 import plugin from "../../src";
 
 interface GenerateResult {
