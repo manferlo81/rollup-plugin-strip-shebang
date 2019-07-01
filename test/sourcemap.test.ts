@@ -1,5 +1,4 @@
-import { SourceMap } from "magic-string";
-import { RollupWarning } from "rollup";
+import { RollupWarning, SourceMap } from "rollup";
 import generate from "./tools/generate";
 
 describe("sourcemap option", () => {
