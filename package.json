@@ -23,7 +23,7 @@
     "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist types coverage",
     "dev": "bundlib -dw",
     "build": "npm run lint && bundlib -d",
-    "test": "jest --color",
+    "test": "jest --color -w 3",
     "preversion": "npm run clean && npm run build && npm test"
   },
   "dependencies": {
