@@ -47,7 +47,6 @@
     "typescript": "^3.5.2"
   },
   "files": [
-    "src",
     "dist",
     "types"
   ],
