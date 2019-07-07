@@ -38,7 +38,7 @@
     "@types/is-callable": "^1.1.0",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.12",
-    "bundlib": "^0.8.2",
+    "bundlib": "^0.8.5",
     "eslint": "^6.0.1",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
