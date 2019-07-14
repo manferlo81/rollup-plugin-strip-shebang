@@ -5,6 +5,8 @@
   "main": "dist/strip-shebang.cjs.js",
   "module": "dist/strip-shebang.es.js",
   "bundlib": {
+    "esModule": true,
+    "interop": true,
     "equals": true
   },
   "types": "types/index.d.ts",

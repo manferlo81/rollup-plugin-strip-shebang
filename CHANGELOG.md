@@ -5,6 +5,7 @@
 ***14-JUL-2019***
 
 * dependencies updated
+* `esModule` & `interop`
 
 ## 1.2.4
 
