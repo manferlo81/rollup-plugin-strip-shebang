@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@types/is-callable": "^1.1.0",
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^24.0.19",
     "@types/node": "^12.7.12",
     "bundlib": "^0.12.5",
     "chokidar": "^3.2.1",
