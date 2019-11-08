@@ -1,5 +1,5 @@
 import isCallable from 'is-callable'
-import MagicString, { SourceMap } from 'magic-string'
+import MagicString from 'magic-string'
 import { Plugin, PluginImpl } from 'rollup'
 import { createFilter } from 'rollup-pluginutils'
 
@@ -12,9 +12,6 @@ interface StripShebangOptions {
   capture?: Record<string, any> | CaptureFunction | null;
   sourcemap?: boolean;
 }
-
-// https://github.com/Rich-Harris/magic-string/pull/155
-type SourceMapFixed = SourceMap & { version: number };
 
 function stripShebang(options: StripShebangOptions = {}): Plugin {
 
@@ -72,7 +69,7 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
 
       return {
         code: ms.toString(),
-        map: ms.generateMap({ hires: true }) as SourceMapFixed,
+        map: ms.generateMap({ hires: true }),
       }
 
     },
