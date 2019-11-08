@@ -1,36 +1,36 @@
-import generate from "./tools/generate";
+import generate from './tools/generate'
 
-const expectedShebang = "#!/usr/bin/env node";
+const expectedShebang = '#!/usr/bin/env node'
 
-describe("capture option", () => {
+describe('capture option', () => {
 
-  test("should throw on invalid capture option", () => {
+  test('should throw on invalid capture option', () => {
 
-    expect(generate("example1.js", { capture: 100 as any })).rejects.toThrow();
+    expect(generate('example1.js', { capture: 100 as any })).rejects.toThrow()
 
-  });
+  })
 
-  test("should capture shebang using a function", async () => {
+  test('should capture shebang using a function', async () => {
 
-    let shebang;
+    let shebang
     const capture = (strippedShebang: string) => {
-      shebang = strippedShebang;
-    };
+      shebang = strippedShebang
+    }
 
-    await generate("example1.js", { capture });
+    await generate('example1.js', { capture })
 
-    expect(shebang).toBe(expectedShebang);
+    expect(shebang).toBe(expectedShebang)
 
-  });
+  })
 
-  test("should capture shebang using an object", async () => {
+  test('should capture shebang using an object', async () => {
 
-    const capture: Record<string, string> = {};
+    const capture: Record<string, string> = {}
 
-    await generate("example1.js", { capture });
+    await generate('example1.js', { capture })
 
-    expect(capture.shebang).toBe(expectedShebang);
+    expect(capture.shebang).toBe(expectedShebang)
 
-  });
+  })
 
-});
+})

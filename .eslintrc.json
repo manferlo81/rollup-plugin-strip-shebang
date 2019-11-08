@@ -28,11 +28,11 @@
     ],
     "quotes": [
       "error",
-      "double"
+      "single"
     ],
     "semi": [
       "error",
-      "always"
+      "never"
     ],
     "comma-dangle": [
       "error",
