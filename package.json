@@ -26,7 +26,8 @@
     "dev": "bundlib -dw",
     "build": "bundlib -d",
     "test": "jest --color -w 3",
-    "preversion": "npm run clean && npm test && npm run lint && npm run build"
+    "prerelease": "npm run clean && npm test && npm run lint && npm run build",
+    "release": "standard-version"
   },
   "dependencies": {
     "is-callable": "^1.1.4",
@@ -47,6 +48,7 @@
     "eslint": "^6.6.0",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "standard-version": "^7.0.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
   },
