@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist types coverage",
-    "lint": "tslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts",
     "dev": "bundlib -dw",
     "build": "bundlib -d",
     "test": "jest --color -w 3",
@@ -40,13 +40,14 @@
     "@types/is-callable": "^1.1.0",
     "@types/jest": "^24.0.22",
     "@types/node": "^12.12.6",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
     "bundlib": "^0.13.1",
     "chokidar": "^3.3.0",
     "eslint": "^6.6.0",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
-    "tslint": "^5.20.0",
     "typescript": "^3.7.2"
   },
   "files": [
