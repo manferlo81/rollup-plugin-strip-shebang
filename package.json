@@ -46,7 +46,7 @@
     "bundlib": "^0.13.1",
     "chokidar": "^3.3.0",
     "eslint": "^6.6.0",
-    "husky": "^3.0.9",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "standard-version": "^7.0.0",
     "ts-jest": "^24.1.0",
