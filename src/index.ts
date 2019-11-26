@@ -49,7 +49,7 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
         return
       }
 
-      const match = sourceCode.match(/^#!.*/)
+      const match = /^#!.*/.exec(sourceCode)
 
       if (!match) {
         return
