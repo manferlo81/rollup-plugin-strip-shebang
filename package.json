@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist types coverage",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/** __test__/**",
     "dev": "bundlib -dw",
     "build": "bundlib -d",
     "test": "jest --color -w 3",
