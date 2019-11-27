@@ -11,5 +11,11 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true
-  }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

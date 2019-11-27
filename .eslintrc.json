@@ -14,7 +14,7 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "tsconfig.json"
+    "project": "tsconfig-eslint.json"
   },
   "plugins": [
     "@typescript-eslint"
@@ -39,6 +39,16 @@
     "comma-dangle": [
       "error",
       "always-multiline"
+    ],
+    "no-useless-rename": "error",
+    "object-shorthand": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0,
+        "maxEOF": 0
+      }
     ],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-function-return-type": "off"
