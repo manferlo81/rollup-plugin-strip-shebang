@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "is-callable": "^1.1.5",
-    "magic-string": "^0.25.4",
+    "magic-string": "^0.25.5",
     "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
