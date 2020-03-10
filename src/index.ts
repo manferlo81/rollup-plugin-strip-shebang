@@ -1,7 +1,7 @@
+import { createFilter } from '@rollup/pluginutils'
 import isCallable from 'is-callable'
 import MagicString from 'magic-string'
 import { Plugin, PluginImpl } from 'rollup'
-import { createFilter } from 'rollup-pluginutils'
 
 type MinimatchPattern = Array<string | RegExp> | string | RegExp | null;
 type CaptureFunction = (shebang: string) => void;
