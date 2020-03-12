@@ -78,4 +78,4 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
 
 }
 
-export default (stripShebang as PluginImpl<StripShebangOptions>)
+export default stripShebang as PluginImpl<StripShebangOptions>
