@@ -138,4 +138,4 @@ sourcemap: boolean = true;
 
 ## License
 
-[MIT](LICENSE) &copy; [Manuel Fernández](https://github.com/manferlo81)
+[MIT](LICENSE) &copy; 2019 [Manuel Fernández](https://github.com/manferlo81)
