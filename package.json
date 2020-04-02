@@ -41,7 +41,7 @@
     "@babel/preset-env": "^7.9.0",
     "@types/is-callable": "^1.1.0",
     "@types/jest": "^25.1.5",
-    "@types/node": "^13.9.8",
+    "@types/node": "^13.11.0",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "bundlib": "^0.15.5",
