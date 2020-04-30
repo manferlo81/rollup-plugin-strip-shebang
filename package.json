@@ -37,7 +37,7 @@
     "magic-string": "^0.25.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.5",
     "@types/is-callable": "^1.1.0",
     "@types/jest": "^25.2.1",
