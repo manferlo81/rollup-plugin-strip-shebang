@@ -13,10 +13,6 @@
   ],
   "main": "dist/strip-shebang.js",
   "module": "dist/strip-shebang.mjs",
-  "bundlib": {
-    "esModule": true,
-    "interop": true
-  },
   "types": "types/index.d.ts",
   "typings": "types/index.d.ts",
   "scripts": {
