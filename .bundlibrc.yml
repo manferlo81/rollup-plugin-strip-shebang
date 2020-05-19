@@ -1,0 +1,4 @@
+esModule: true
+interop: true
+
+project: tsconfig-build.json
