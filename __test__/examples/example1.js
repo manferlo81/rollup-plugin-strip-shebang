@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-console.log('strip shebang test #1...')
+console.log('strip shebang test #1...');

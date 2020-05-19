@@ -1,1 +1,1 @@
-console.log('strip shebang test #2...')
+console.log('strip shebang test #2...');

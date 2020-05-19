@@ -32,10 +32,6 @@ rules:
     - error
     - single
 
-  semi:
-    - error
-    - never
-
   comma-dangle:
     - error
     - always-multiline
@@ -51,3 +47,8 @@ rules:
 
   "@typescript-eslint/no-explicit-any": "off"
   "@typescript-eslint/explicit-function-return-type": "off"
+
+  semi: "off"
+  "@typescript-eslint/semi":
+    - error
+    - always
