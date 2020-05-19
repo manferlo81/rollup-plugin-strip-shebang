@@ -13,7 +13,10 @@
     "noImplicitThis": true
   },
   "include": [
-    "src/**/*.ts"
+    "__test__/**/*.ts",
+    "__test__/**/*.js",
+    "src/**/*.ts",
+    "jest.config.js"
   ],
   "exclude": [
     "node_modules/**"

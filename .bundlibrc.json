@@ -1,4 +1,5 @@
 {
   "esModule": true,
-  "interop": true
+  "interop": true,
+  "project": "tsconfig-build.json"
 }
