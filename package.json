@@ -21,7 +21,7 @@
     "dev": "bundlib -dw",
     "build": "bundlib -d",
     "test": "jest --color -w 3",
-    "prerelease": "npm run clean && npm test && npm run lint && npm run build",
+    "prerelease": "npm run clean && npm run lint && npm test && npm run build",
     "release": "standard-version"
   },
   "engines": {
