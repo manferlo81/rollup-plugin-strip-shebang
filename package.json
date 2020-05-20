@@ -45,7 +45,7 @@
     "eslint": "^7.0.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
-    "rollup": "^2.10.2",
+    "rollup": "^2.10.5",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-export-equals": "^0.3.6",
