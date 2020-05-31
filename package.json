@@ -51,7 +51,7 @@
     "rollup-plugin-export-equals": "^0.3.6",
     "rollup-plugin-typescript2": "^0.27.1",
     "standard-version": "^8.0.0",
-    "ts-jest": "^26.0.0",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.9.3"
   },
   "peerDependencies": {
