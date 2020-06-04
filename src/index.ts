@@ -33,6 +33,7 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
         : null;
 
   if (capture != null && !captureShebang) {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     throw new TypeError(`${capture} is not a function or object`);
   }
 

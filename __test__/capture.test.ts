@@ -6,7 +6,7 @@ describe('capture option', () => {
 
   test('should throw on invalid capture option', () => {
 
-    expect(generate('example1.js', { capture: 100 as any })).rejects.toThrow();
+    void expect(generate('example1.js', { capture: 100 as never })).rejects.toThrow();
 
   });
 
