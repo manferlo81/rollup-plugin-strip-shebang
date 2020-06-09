@@ -1,14 +1,14 @@
 import { createFilter } from '@rollup/pluginutils';
+import type { FilterPattern } from '@rollup/pluginutils';
 import isCallable from 'is-callable';
 import MagicString from 'magic-string';
-import { Plugin, PluginImpl } from 'rollup';
+import type { Plugin, PluginImpl } from 'rollup';
 
-type MinimatchPattern = Array<string | RegExp> | string | RegExp | null;
 type CaptureFunction = (shebang: string) => void;
 
 interface StripShebangOptions {
-  include?: MinimatchPattern;
-  exclude?: MinimatchPattern;
+  include?: FilterPattern;
+  exclude?: FilterPattern;
   capture?: Record<string, any> | CaptureFunction | null;
   sourcemap?: boolean;
 }
@@ -62,11 +62,13 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
         captureShebang(shebang);
       }
 
+      const { length: len } = shebang;
+
       if (!generateMap) {
-        return sourceCode.substr(shebang.length);
+        return sourceCode.substr(len);
       }
 
-      const ms = new MagicString(sourceCode).overwrite(0, shebang.length, '');
+      const ms = new MagicString(sourceCode).overwrite(0, len, '');
 
       return {
         code: ms.toString(),
