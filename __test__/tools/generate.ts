@@ -7,6 +7,7 @@ interface GenerateResult {
   map?: SourceMap;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Options = (typeof plugin) extends ((options: infer O) => any) ? O : never;
 
 const generate = async (input: string, options?: Options): Promise<GenerateResult> => {
