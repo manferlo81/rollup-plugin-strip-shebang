@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.0.0",
-    "is-callable": "^1.2.1",
+    "is-callable": "^1.2.2",
     "magic-string": "^0.25.7"
   },
   "devDependencies": {
