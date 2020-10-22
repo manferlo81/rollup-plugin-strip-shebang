@@ -40,7 +40,7 @@
     "@types/node": "^14.14.2",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
-    "bundlib": "^0.17.5",
+    "bundlib": "^0.17.7",
     "chokidar": "^3.4.3",
     "eslint": "^7.11.0",
     "husky": "^4.3.0",
