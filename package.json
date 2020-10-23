@@ -13,10 +13,10 @@
   ],
   "main": "dist/strip-shebang.js",
   "module": "dist/strip-shebang.mjs",
-  "types": "types/index.d.ts",
-  "typings": "types/index.d.ts",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist types coverage",
+    "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist coverage",
     "lint": "eslint src/** __test__/**",
     "dev": "bundlib -dw",
     "build": "bundlib -d",
@@ -53,8 +53,7 @@
     "rollup": "^2.0.0"
   },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "author": {
     "name": "Manuel Fernandez",
