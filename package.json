@@ -28,7 +28,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.0.0",
+    "@rollup/pluginutils": "^4.1.0",
     "is-callable": "^1.2.2",
     "magic-string": "^0.25.7"
   },
