@@ -3,8 +3,8 @@ import plugin from '../../src';
 
 interface GenerateResult {
   code: string;
-  warnings: Array<string | RollupWarning>;
   map?: SourceMap;
+  warnings: Array<RollupWarning>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,10 +12,10 @@ type Options = (typeof plugin) extends ((options: infer O) => any) ? O : never;
 
 const generate = async (input: string, options?: Options): Promise<GenerateResult> => {
 
-  const warnings: Array<string | RollupWarning> = [];
+  const warnings: Array<RollupWarning> = [];
 
   const build = await rollup({
-    input: require.resolve(`../examples/${input}`),
+    input: require.resolve(`../fixtures/${input}`),
     plugins: [
       plugin(options),
     ],
@@ -25,14 +25,15 @@ const generate = async (input: string, options?: Options): Promise<GenerateResul
   });
 
   const { output: [{ code, map }] } = await build.generate({
-    format: 'es',
+    file: 'dist/lib.js',
+    format: 'cjs',
     sourcemap: true,
   });
 
   return {
-    warnings,
     code,
     map,
+    warnings,
   };
 
 };

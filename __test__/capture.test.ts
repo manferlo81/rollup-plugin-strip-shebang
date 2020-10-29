@@ -6,18 +6,26 @@ describe('capture option', () => {
 
   test('should throw on invalid capture option', () => {
 
-    void expect(generate('example1.js', { capture: 100 as never })).rejects.toThrow();
+    const invalids = [
+      100,
+      'string',
+      true,
+      false,
+    ];
+
+    invalids.forEach((invalid) => {
+      void expect(generate('with-node-shebang.js', { capture: invalid as never })).rejects.toThrow();
+    });
 
   });
 
   test('should capture shebang using a function', async () => {
 
     let shebang;
-    const capture = (strippedShebang: string) => {
-      shebang = strippedShebang;
+    const capture = (capturedShebang: string) => {
+      shebang = capturedShebang;
     };
-
-    await generate('example1.js', { capture });
+    await generate('with-node-shebang.js', { capture });
 
     expect(shebang).toBe(expectedShebang);
 
@@ -26,8 +34,7 @@ describe('capture option', () => {
   test('should capture shebang using an object', async () => {
 
     const capture: Record<string, string> = {};
-
-    await generate('example1.js', { capture });
+    await generate('with-node-shebang.js', { capture });
 
     expect(capture.shebang).toBe(expectedShebang);
 
