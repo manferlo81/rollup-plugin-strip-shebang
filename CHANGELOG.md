@@ -2,6 +2,8 @@
 
 ## Version History
 
+### [1.2.10](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.9...v1.2.10) (2020-10-29)
+
 ### [1.2.9](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.8...v1.2.9) (2020-03-12)
 
 ### [1.2.8](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.7...v1.2.8) (2020-03-10)
