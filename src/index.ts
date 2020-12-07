@@ -1,19 +1,10 @@
-import { createFilter } from '@rollup/pluginutils';
 import type { FilterPattern } from '@rollup/pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 import isCallable from 'is-callable';
 import MagicString from 'magic-string';
 import type { Plugin, PluginImpl } from 'rollup';
 
-type CaptureFunction = (shebang: string) => void;
-
-interface StripShebangOptions {
-  include?: FilterPattern;
-  exclude?: FilterPattern;
-  capture?: Record<string, any> | CaptureFunction | null;
-  sourcemap?: boolean;
-}
-
-function stripShebang(options: StripShebangOptions = {}): Plugin {
+function stripShebang(options: stripShebang.StripShebangOptions = {}): Plugin {
 
   const {
     include = /\.[jt]s$/,
@@ -33,8 +24,7 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
         : null;
 
   if (capture != null && !captureShebang) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    throw new TypeError(`${capture} is not a function or object`);
+    throw new TypeError(`${capture as unknown as string} is not a function or object`);
   }
 
   const generateMap: boolean = sourcemap !== false;
@@ -81,4 +71,20 @@ function stripShebang(options: StripShebangOptions = {}): Plugin {
 
 }
 
-export default stripShebang as PluginImpl<StripShebangOptions>;
+type stripShebang = PluginImpl<stripShebang.StripShebangOptions>;
+
+// eslint-disable-next-line @typescript-eslint/no-namespace
+namespace stripShebang {
+
+  export type CaptureFunction = (shebang: string) => void;
+
+  export interface StripShebangOptions {
+    include?: FilterPattern;
+    exclude?: FilterPattern;
+    capture?: Record<string, any> | CaptureFunction | null;
+    sourcemap?: boolean;
+  }
+
+}
+
+export default stripShebang;

@@ -1,5 +1,5 @@
 import { rollup, RollupWarning, SourceMap } from 'rollup';
-import plugin from '../../src';
+import plugin from '../../src/index';
 
 interface GenerateResult {
   code: string;
@@ -7,10 +7,7 @@ interface GenerateResult {
   warnings: Array<RollupWarning>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-type Options = (typeof plugin) extends ((options: infer O) => any) ? O : never;
-
-const generate = async (input: string, options?: Options): Promise<GenerateResult> => {
+const generate = async (input: string, options?: plugin.StripShebangOptions): Promise<GenerateResult> => {
 
   const warnings: Array<RollupWarning> = [];
 
