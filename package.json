@@ -11,10 +11,16 @@
     "extract",
     "strip"
   ],
-  "main": "dist/strip-shebang.js",
-  "module": "dist/strip-shebang.mjs",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    "import": "./dist/strip-shebang.mjs",
+    "default": "./dist/strip-shebang.cjs"
+  },
+  "main": "./dist/strip-shebang.cjs",
+  "module": "./dist/strip-shebang.mjs",
+  "jsnext:main": "./dist/strip-shebang.mjs",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "clean:cache": "rimraf node_modules/.cache/{bundlib,jest}",
     "clean:build": "rimraf dist coverage",
