@@ -16,12 +16,16 @@
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist coverage",
-    "lint": "eslint src/** __test__/**",
+    "clean:cache": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest",
+    "clean:build": "rm -rf dist coverage",
+    "clean": "run-p clean:*",
+    "lint:test": "eslint __test__/**",
+    "lint:src": "eslint src/**",
+    "lint": "run-p lint:*",
+    "test": "jest --color -w 3",
     "dev": "bundlib -dw",
     "build": "bundlib -d",
-    "test": "jest --color -w 3",
-    "prerelease": "npm run clean && npm run lint && npm test && npm run build",
+    "prerelease": "run-s clean lint test build",
     "release": "standard-version"
   },
   "engines": {
@@ -45,6 +49,7 @@
     "eslint": "^7.15.0",
     "husky": "^4.3.0",
     "jest": "^26.6.3",
+    "npm-run-all": "^4.1.5",
     "standard-version": "^9.0.0",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.2"
