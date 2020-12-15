@@ -1,11 +1,15 @@
 import { SourceMap } from 'rollup';
-import generate from './tools/generate';
+import stripShebang from '../src';
+import { generate } from './tools/generate';
+import { mockCWD } from './tools/mock-cwd';
 
 describe('sourcemap option', () => {
 
   test('should respect sourcemap and give a warning', async () => {
 
-    const { map, warnings } = await generate('with-node-shebang.js', { sourcemap: false });
+    const { map, warnings } = await mockCWD(() => generate('with-node-shebang.js', [
+      stripShebang({ sourcemap: false }),
+    ]));
 
     expect(map).toBeTruthy();
     expect((map as SourceMap).sourcesContent).toHaveLength(0);
@@ -16,7 +20,9 @@ describe('sourcemap option', () => {
 
   test('should sourcemap default to true and generate sourcemap', async () => {
 
-    const { map, warnings } = await generate('with-node-shebang.js');
+    const { map, warnings } = await mockCWD(() => generate('with-node-shebang.js', [
+      stripShebang(),
+    ]));
 
     expect(map).toBeTruthy();
     expect((map as SourceMap).sourcesContent).toBeTruthy();

@@ -1,5 +1,4 @@
-import { rollup, RollupWarning, SourceMap } from 'rollup';
-import plugin from '../../src/index';
+import { Plugin, rollup, RollupWarning, SourceMap } from 'rollup';
 
 interface GenerateResult {
   code: string;
@@ -7,15 +6,13 @@ interface GenerateResult {
   warnings: Array<RollupWarning>;
 }
 
-const generate = async (input: string, options?: plugin.StripShebangOptions): Promise<GenerateResult> => {
+export async function generate(input: string, plugins: Plugin[]): Promise<GenerateResult> {
 
   const warnings: Array<RollupWarning> = [];
 
   const build = await rollup({
-    input: require.resolve(`../fixtures/${input}`),
-    plugins: [
-      plugin(options),
-    ],
+    input,
+    plugins,
     onwarn(warning) {
       warnings.push(warning);
     },
@@ -33,6 +30,4 @@ const generate = async (input: string, options?: plugin.StripShebangOptions): Pr
     warnings,
   };
 
-};
-
-export default generate;
+}
