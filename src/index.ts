@@ -58,7 +58,7 @@ function stripShebang(options: stripShebang.StripShebangOptions = {}): Plugin {
         return sourceCode.substr(len);
       }
 
-      const ms = new MagicString(sourceCode).overwrite(0, len, '');
+      const ms = new MagicString(sourceCode).remove(0, len);
 
       return {
         code: ms.toString(),
