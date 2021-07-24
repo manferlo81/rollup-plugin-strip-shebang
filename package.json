@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-env": "^7.14.8",
     "@types/is-callable": "^1.1.0",
     "@types/jest": "^26.0.24",
     "@types/mock-fs": "^4.13.1",
