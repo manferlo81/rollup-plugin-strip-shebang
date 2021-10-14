@@ -38,7 +38,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.1.0",
+    "@rollup/pluginutils": "^4.1.1",
     "is-callable": "^1.2.3",
     "magic-string": "^0.25.7"
   },
