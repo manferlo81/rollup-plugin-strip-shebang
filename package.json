@@ -48,7 +48,7 @@
     "@types/is-callable": "^1.1.0",
     "@types/jest": "^27.0.2",
     "@types/mock-fs": "^4.13.1",
-    "@types/node": "^16.3.0",
+    "@types/node": "^18.7.5",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.3",
     "bundlib": "^0.18.4",
