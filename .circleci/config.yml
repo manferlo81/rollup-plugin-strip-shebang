@@ -1,15 +1,53 @@
 version: 2.1
 
 orbs:
-  codecov: codecov/codecov@1.0.5
+  codecov: codecov/codecov@4.1.0
 
 executors:
   executor_node_18:
     docker:
       - image: cimg/node:18.20
-    working_directory: &working_directory ~/rollup-plugin-strip-shebang
+    working_directory: ~/rollup-plugin-strip-shebang
+
+  executor_node_20:
+    docker:
+      - image: cimg/node:20.15
+    working_directory: ~/rollup-plugin-strip-shebang
 
 commands:
+  command_ci:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-rpstsh-{{ checksum "package-lock.json" }}
+            - v1-deps-rpstsh-
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: v1-deps-rpstsh-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run Tests
+          command: npm test
+      - run:
+          name: Build
+          command: npm run build
+
+  command_save_workspace:
+    steps:
+      - persist_to_workspace:
+          root: ~/rollup-plugin-strip-shebang
+          paths:
+            - .
+
+  command_restore_workspace:
+    steps:
+      - attach_workspace:
+          at: ~/rollup-plugin-strip-shebang
+
   command_npm_publish:
     steps:
       - run:
@@ -20,50 +58,41 @@ commands:
           command: npm publish
 
 jobs:
-  job_test_and_build:
+  job_node_18_ci:
     executor: executor_node_18
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-deps-rpstsh-{{ checksum "package.json" }}
-            - v1-deps-rpstsh-
-      - run:
-          name: Install Dependencies
-          command: npm install
-      - save_cache:
-          key: v1-deps-rpstsh-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Run Tests
-          command: npm test
-      - run:
-          name: Build
-          command: npm run build
-      - persist_to_workspace:
-          root: *working_directory
-          paths:
-            - .
+      - command_ci
+      - command_save_workspace
+
+  job_node_20_ci:
+    executor: executor_node_20
+    steps:
+      - command_ci
 
   job_upload_coverage:
     executor: executor_node_18
     steps:
-      - attach_workspace: &attach_workspace
-          at: *working_directory
+      - command_restore_workspace
       - codecov/upload:
           file: coverage/*.json
 
   job_publish_to_npm:
     executor: executor_node_18
     steps:
-      - attach_workspace: *attach_workspace
+      - command_restore_workspace
       - command_npm_publish
 
 workflows:
   workflow_ci:
     jobs:
-      - job_test_and_build:
+      - job_node_18_ci:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
+
+      - job_node_20_ci:
           filters:
             tags:
               only: /.*/
@@ -72,7 +101,8 @@ workflows:
 
       - job_upload_coverage:
           requires:
-            - job_test_and_build
+            - job_node_18_ci
+            - job_node_20_ci
           filters:
             branches:
               only: /master/
@@ -80,7 +110,8 @@ workflows:
       - job_publish_to_npm:
           context: npm
           requires:
-            - job_test_and_build
+            - job_node_18_ci
+            - job_node_20_ci
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
