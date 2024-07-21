@@ -13,7 +13,10 @@
   ],
   "type": "commonjs",
   "exports": {
+    "types": "./dist/index.d.ts",
     "import": "./dist/strip-shebang.mjs",
+    "require": "./dist/strip-shebang.cjs",
+    "node": "./dist/strip-shebang.cjs",
     "default": "./dist/strip-shebang.cjs"
   },
   "main": "./dist/strip-shebang.cjs",
