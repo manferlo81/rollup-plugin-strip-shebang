@@ -61,6 +61,7 @@ function stripShebang(options: stripShebang.StripShebangOptions = {}): Plugin {
       const ms = new MagicString(sourceCode).remove(0, len);
 
       return {
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
         code: ms.toString(),
         map: ms.generateMap({ hires: true }),
       };
@@ -81,6 +82,7 @@ namespace stripShebang {
   export interface StripShebangOptions {
     include?: FilterPattern;
     exclude?: FilterPattern;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     capture?: Record<string, any> | CaptureFunction | null;
     sourcemap?: boolean;
   }

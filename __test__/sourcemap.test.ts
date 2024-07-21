@@ -26,7 +26,7 @@ describe('sourcemap option', () => {
 
     expect(map).toBeTruthy();
     expect((map as SourceMap).sourcesContent).toBeTruthy();
-    expect((map as SourceMap).sourcesContent.length).toBeGreaterThan(0);
+    expect((map as SourceMap).sourcesContent?.length).toBeGreaterThan(0);
     expect(warnings).toHaveLength(0);
 
   });

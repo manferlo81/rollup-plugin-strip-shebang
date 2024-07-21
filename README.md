@@ -4,6 +4,12 @@
 
 A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally extract shebang.
 
+## DEPRECATION NOTICE
+
+As of Rollup v3 shebang will be stripped by rollup itself, but you might still need this plugin if you need to capture the shebang in order to add it back later.
+
+As of [Rollup v4](https://github.com/rollup/rollup/blob/master/CHANGELOG.md#400) shebang will be stripped out and added back into the output file ([check it out here](https://github.com/rollup/rollup/pull/5163)), making this plugin almost unnecessary.
+
 ## Install
 
 ```bash

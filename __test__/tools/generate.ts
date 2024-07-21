@@ -1,8 +1,8 @@
-import { Plugin, rollup, RollupWarning, SourceMap } from 'rollup';
+import { Plugin, rollup, RollupLog as RollupWarning, SourceMap } from 'rollup';
 
 interface GenerateResult {
   code: string;
-  map?: SourceMap;
+  map: SourceMap | null;
   warnings: Array<RollupWarning>;
 }
 

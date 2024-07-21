@@ -1,5 +1,0 @@
-{
-  "hooks": {
-    "pre-push": "run-s lint test build"
-  }
-}

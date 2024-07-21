@@ -35,7 +35,7 @@ describe('capture option', () => {
 
   test('should capture shebang using an object', async () => {
 
-    const capture = await mockCWD(async () => {
+    const captured = await mockCWD(async () => {
 
       const capture: Record<string, string> = {};
 
@@ -47,7 +47,7 @@ describe('capture option', () => {
 
     });
 
-    expect(capture.shebang).toBe(expectedShebang);
+    expect(captured.shebang).toBe(expectedShebang);
 
   });
 
