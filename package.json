@@ -39,7 +39,7 @@
     "prepare": "husky"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=18"
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.0",

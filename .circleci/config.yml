@@ -4,9 +4,9 @@ orbs:
   codecov: codecov/codecov@1.0.5
 
 executors:
-  executor_node:
+  executor_node_18:
     docker:
-      - image: cimg/node:12.22
+      - image: cimg/node:18.20
     working_directory: &working_directory ~/rollup-plugin-strip-shebang
 
 commands:
@@ -21,7 +21,7 @@ commands:
 
 jobs:
   job_test_and_build:
-    executor: executor_node
+    executor: executor_node_18
     steps:
       - checkout
       - restore_cache:
@@ -47,7 +47,7 @@ jobs:
             - .
 
   job_upload_coverage:
-    executor: executor_node
+    executor: executor_node_18
     steps:
       - attach_workspace: &attach_workspace
           at: *working_directory
@@ -55,7 +55,7 @@ jobs:
           file: coverage/*.json
 
   job_publish_to_npm:
-    executor: executor_node
+    executor: executor_node_18
     steps:
       - attach_workspace: *attach_workspace
       - command_npm_publish
