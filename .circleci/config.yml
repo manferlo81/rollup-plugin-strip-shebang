@@ -4,15 +4,13 @@ orbs:
   codecov: codecov/codecov@1.0.5
 
 executors:
-
-  node:
+  executor_node:
     docker:
-      - image: circleci/node:12
+      - image: cimg/node:12.22
     working_directory: &working_directory ~/rollup-plugin-strip-shebang
 
 commands:
-
-  npm_publish:
+  command_npm_publish:
     steps:
       - run:
           name: Login to npm
@@ -22,9 +20,8 @@ commands:
           command: npm publish
 
 jobs:
-
-  test_and_build:
-    executor: node
+  job_test_and_build:
+    executor: executor_node
     steps:
       - checkout
       - restore_cache:
@@ -46,46 +43,44 @@ jobs:
           command: npm run build
       - persist_to_workspace:
           root: *working_directory
-          paths: .
+          paths:
+            - .
 
-  upload_coverage:
-    executor: node
+  job_upload_coverage:
+    executor: executor_node
     steps:
       - attach_workspace: &attach_workspace
           at: *working_directory
       - codecov/upload:
           file: coverage/*.json
 
-  publish_to_npm:
-    executor: node
+  job_publish_to_npm:
+    executor: executor_node
     steps:
       - attach_workspace: *attach_workspace
-      - npm_publish
+      - command_npm_publish
 
 workflows:
-  version: 2
-
-  workflow:
+  workflow_ci:
     jobs:
-
-      - test_and_build:
+      - job_test_and_build:
           filters:
             tags:
               only: /.*/
             branches:
               only: /.*/
 
-      - upload_coverage:
+      - job_upload_coverage:
           requires:
-            - test_and_build
+            - job_test_and_build
           filters:
             branches:
               only: /master/
 
-      - publish_to_npm:
+      - job_publish_to_npm:
           context: npm
           requires:
-            - test_and_build
+            - job_test_and_build
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
