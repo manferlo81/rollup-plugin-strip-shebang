@@ -19,7 +19,6 @@ commands:
     parameters:
       cache_key:
         type: string
-        default: v1-deps-rpstsh
     steps:
       - checkout
       - restore_cache:

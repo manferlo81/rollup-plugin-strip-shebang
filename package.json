@@ -13,7 +13,7 @@
   ],
   "type": "commonjs",
   "exports": {
-    "types": "./dist/index.d.ts",
+    "types": "./dist/types/index.d.ts",
     "import": "./dist/strip-shebang.mjs",
     "require": "./dist/strip-shebang.cjs",
     "node": "./dist/strip-shebang.cjs",
@@ -22,8 +22,8 @@
   "main": "./dist/strip-shebang.cjs",
   "module": "./dist/strip-shebang.mjs",
   "jsnext:main": "./dist/strip-shebang.mjs",
-  "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/types/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
   "scripts": {
     "clean:cache": "rimraf node_modules/.cache/{bundlib,jest}",
     "clean:build": "rimraf dist coverage",

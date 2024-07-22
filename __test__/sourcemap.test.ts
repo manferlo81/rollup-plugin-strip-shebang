@@ -1,5 +1,5 @@
 import { SourceMap } from 'rollup';
-import stripShebang from '../src';
+import { stripShebang } from '../src';
 import { generate } from './tools/generate';
 import { mockCWD } from './tools/mock-cwd';
 

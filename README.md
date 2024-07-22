@@ -27,7 +27,7 @@ console.log("Hi!");
 
 ```javascript
 // rollup.config.js
-import stripShebang from "rollup-plugin-strip-shebang";
+import { stripShebang } from "rollup-plugin-strip-shebang";
 
 export default {
 
@@ -47,7 +47,7 @@ export default {
 
 ## Features
 
-* Target file filtering *(see [include](#include) & [exclude](#exclude))*
+* Target file filtering *(see [include / exclude](#include--exclude))*
 * Capture stripped shebang *(see [capture](#capture) option)*
 * Sourcemap support *(see [sourcemap](#sourcemap) option)*
 
@@ -55,7 +55,7 @@ export default {
 
 ### include / exclude
 
-[minimatch](https://github.com/isaacs/minimatch) pattern to be used as filter, [see `createFilter` documentation](https://github.com/rollup/rollup-pluginutils#createfilter).
+[minimatch](https://github.com/isaacs/minimatch) pattern to be used as filter, see `createFilter` [documentation](https://github.com/rollup/rollup-pluginutils#createfilter).
 
 ***syntax***
 
@@ -116,7 +116,7 @@ console.log(capture.shebang);
 
 ### sourcemap
 
-You can pass `sourcemap: false` to speed things up a bit if you don't need source maps. Anything other than `false` will default to `true`.
+You can pass `sourcemap: false` to speed things up a bit if you don't need source maps. Anything other than `false` will default to `true`, including `null` and `undefined`.
 
 ***syntax***
 
@@ -144,4 +144,4 @@ sourcemap: boolean = true;
 
 ## License
 
-[MIT](LICENSE) &copy; 2019 [Manuel Fernández](https://github.com/manferlo81)
+[MIT](LICENSE) &copy; 2019-2024 [Manuel Fernández](https://github.com/manferlo81)

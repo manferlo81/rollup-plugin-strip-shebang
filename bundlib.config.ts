@@ -1,9 +1,8 @@
-import { BundlibConfig } from 'bundlib';
+import { BundlibConfig as Config } from 'bundlib';
 
-const config: BundlibConfig = {
+const config: Config = {
   esModule: true,
   interop: true,
-  equals: true,
   project: 'tsconfig-build.json',
 };
 

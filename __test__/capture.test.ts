@@ -1,4 +1,4 @@
-import stripShebang from '../src';
+import { stripShebang } from '../src';
 import { generate } from './tools/generate';
 import { mockCWD } from './tools/mock-cwd';
 
@@ -7,10 +7,16 @@ const expectedShebang = '#!/usr/bin/env node';
 describe('capture option', () => {
 
   test('should throw on invalid capture option', () => {
-    expect(() => stripShebang({ capture: 100 as never })).toThrow();
-    expect(() => stripShebang({ capture: 'string' as never })).toThrow();
-    expect(() => stripShebang({ capture: true as never })).toThrow();
-    expect(() => stripShebang({ capture: false as never })).toThrow();
+    const invalidCaptureOptions = [
+      100,
+      'string',
+      true,
+      false,
+    ];
+    invalidCaptureOptions.forEach((invalid) => {
+      const createPlugin = () => stripShebang({ capture: invalid as never });
+      expect(createPlugin).toThrow('is not a function nor an object');
+    });
   });
 
   test('should capture shebang using a function', async () => {
