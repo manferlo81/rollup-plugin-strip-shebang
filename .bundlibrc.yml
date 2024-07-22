@@ -1,6 +1,0 @@
-esModule: true
-interop: true
-
-equals: true
-
-project: tsconfig-build.json
