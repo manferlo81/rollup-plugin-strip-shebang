@@ -1,8 +1,8 @@
 import { createFilter } from '@rollup/pluginutils';
-import isCallable from 'is-callable';
 import MagicString from 'magic-string';
 import type { Plugin } from 'rollup';
-import { StripShebangOptions } from './types';
+import { processCaptureOption } from './capture';
+import type { StripShebangOptions } from './types';
 
 export function stripShebang(options: StripShebangOptions = {}): Plugin {
 
@@ -13,22 +13,14 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
     sourcemap,
   } = options;
 
-  const captureShebang = !capture
-    ? null
-    : isCallable(capture)
-      ? capture
-      : (typeof capture === 'object')
-        ? (captured: string) => {
-          capture.shebang = captured;
-        }
-        : null;
-
-  if (capture != null && !captureShebang) {
-    throw new TypeError(`${capture as unknown as string} is not a function nor an object`);
-  }
-
-  const generateMap: boolean = sourcemap !== false;
+  // create filter
   const filter = createFilter(include, exclude);
+
+  // normalize capture option
+  const captureShebang = processCaptureOption(capture);
+
+  // normalize sourcemap option
+  const generateMap: boolean = sourcemap !== false;
 
   return {
 
@@ -36,34 +28,36 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
 
     transform(sourceCode, id) {
 
-      if (!filter(id)) {
-        return;
-      }
+      // exit if filter doesn't pass the test
+      if (!filter(id)) return;
 
+      // check if shebang is present in the file
       const match = /^#!.*/.exec(sourceCode);
 
-      if (!match) {
-        return;
-      }
+      // exit if shebang not resent
+      if (!match) return;
 
-      const shebang = match[0];
+      // get shebang from match
+      const [shebang] = match;
 
+      // store shebang
       if (captureShebang) {
         captureShebang(shebang);
       }
 
-      const { length: len } = shebang;
+      // get shebang length
+      const { length } = shebang;
 
-      if (!generateMap) {
-        return sourceCode.substr(len);
-      }
+      // return transformed string only if no sourcemap needs to be generated
+      if (!generateMap) return sourceCode.substring(length);
 
-      const ms = new MagicString(sourceCode).remove(0, len);
+      // create sourcemap manager
+      const ms = new MagicString(sourceCode).remove(0, length);
 
-      return {
-        code: ms.toString(),
-        map: ms.generateMap({ hires: true }),
-      };
+      // return transformed string with sourcemap
+      const code = ms.toString();
+      const map = ms.generateMap({ hires: true });
+      return { code, map };
 
     },
 

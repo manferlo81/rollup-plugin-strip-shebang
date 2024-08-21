@@ -24,6 +24,7 @@
   "jsnext:main": "./dist/strip-shebang.mjs",
   "types": "./dist/types/index.d.ts",
   "typings": "./dist/types/index.d.ts",
+  "bundlib": "bundlib.config.mjs",
   "scripts": {
     "clean:cache": "rimraf --glob node_modules/.cache/{bundlib,jest}",
     "clean:build": "rimraf dist coverage",
@@ -77,7 +78,9 @@
     "rollup": "^2.0.0||^3.0.0||^4.0.0"
   },
   "overrides": {
-    "eslint": "^9.9.0",
+    "@rollup/plugin-eslint": {
+      "eslint": "^9"
+    },
     "rollup": "^4.21.0"
   },
   "author": {
