@@ -1,4 +1,3 @@
-import { SourceMap } from 'rollup';
 import { stripShebang } from '../src';
 import { generate } from './tools/generate';
 import { mockCWD } from './tools/mock-cwd';
@@ -12,7 +11,7 @@ describe('sourcemap option', () => {
     ]));
 
     expect(map).toBeTruthy();
-    expect((map as SourceMap).sourcesContent).toHaveLength(0);
+    expect(map?.sourcesContent).toHaveLength(0);
     expect(warnings).toHaveLength(1);
     expect(warnings[0].code).toBe('SOURCEMAP_BROKEN');
 
@@ -25,8 +24,8 @@ describe('sourcemap option', () => {
     ]));
 
     expect(map).toBeTruthy();
-    expect((map as SourceMap).sourcesContent).toBeTruthy();
-    expect((map as SourceMap).sourcesContent?.length).toBeGreaterThan(0);
+    expect(map?.sourcesContent).toBeTruthy();
+    expect(map?.sourcesContent?.length).toBeGreaterThan(0);
     expect(warnings).toHaveLength(0);
 
   });

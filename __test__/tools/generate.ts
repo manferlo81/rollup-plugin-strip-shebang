@@ -3,12 +3,12 @@ import { Plugin, rollup, RollupLog as RollupWarning, SourceMap } from 'rollup';
 interface GenerateResult {
   code: string;
   map: SourceMap | null;
-  warnings: Array<RollupWarning>;
+  warnings: RollupWarning[];
 }
 
 export async function generate(input: string, plugins: Plugin[]): Promise<GenerateResult> {
 
-  const warnings: Array<RollupWarning> = [];
+  const warnings: RollupWarning[] = [];
 
   const build = await rollup({
     input,

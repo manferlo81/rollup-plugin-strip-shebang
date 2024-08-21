@@ -23,7 +23,8 @@ describe('capture option', () => {
 
     const shebang = await mockCWD(async () => {
 
-      let shebang;
+      let shebang: string | undefined;
+
       const capture = (capturedShebang: string) => {
         shebang = capturedShebang;
       };
@@ -33,6 +34,7 @@ describe('capture option', () => {
       ]);
 
       return shebang;
+
     });
 
     expect(shebang).toBe(expectedShebang);

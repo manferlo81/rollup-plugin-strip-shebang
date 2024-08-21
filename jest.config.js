@@ -1,5 +1,5 @@
-module.exports = {
-
+/** @type { import("jest").Config } */
+const config = {
   testEnvironment: 'node',
   cacheDirectory: 'node_modules/.cache/jest',
   preset: 'ts-jest',
@@ -16,5 +16,6 @@ module.exports = {
   ],
 
   verbose: true,
-
 };
+
+module.exports = config;

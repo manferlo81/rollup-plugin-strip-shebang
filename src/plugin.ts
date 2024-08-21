@@ -24,7 +24,7 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
         : null;
 
   if (capture != null && !captureShebang) {
-    throw new TypeError(`${capture as any} is not a function nor an object`);
+    throw new TypeError(`${capture as unknown as string} is not a function nor an object`);
   }
 
   const generateMap: boolean = sourcemap !== false;
