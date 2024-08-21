@@ -1,6 +1,5 @@
 /** @type { import("jest").Config } */
 const config = {
-  testEnvironment: 'node',
   cacheDirectory: 'node_modules/.cache/jest',
   preset: 'ts-jest',
 
@@ -10,12 +9,11 @@ const config = {
   ],
   coverageDirectory: 'coverage',
   coverageReporters: [
-    process.env.CI ? 'json' : 'lcov',
+    process.env.CI ? 'json' : 'html',
     'text',
-    'text-summary',
   ],
 
   verbose: true,
 };
 
-module.exports = config;
+export default config;
