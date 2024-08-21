@@ -1,1 +1,1 @@
-npx run-s lint test build
+npm run clean-build
