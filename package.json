@@ -28,8 +28,8 @@
     "clean:cache": "rimraf --glob node_modules/.cache/{bundlib,jest}",
     "clean:build": "rimraf dist coverage",
     "clean": "run-p clean:*",
-    "lint:test": "eslint __test__/**",
-    "lint:src": "eslint src/**",
+    "lint:test": "eslint __test__",
+    "lint:src": "eslint src",
     "lint": "run-p lint:*",
     "test": "jest --color -w 3",
     "dev": "bundlib -dw",
@@ -46,7 +46,7 @@
   "dependencies": {
     "@rollup/pluginutils": "^5.1.0",
     "is-callable": "^1.2.7",
-    "magic-string": "^0.30.10"
+    "magic-string": "^0.30.11"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -56,7 +56,7 @@
     "@types/is-callable": "^1.1.2",
     "@types/jest": "^29.5.12",
     "@types/mock-fs": "^4.13.4",
-    "@types/node": "^20.14.11",
+    "@types/node": "^22.4.2",
     "bundlib": "^0.20.0",
     "chokidar": "^3.6.0",
     "core-js": "^3.38.1",
@@ -69,8 +69,8 @@
     "rimraf": "^6.0.1",
     "rollup": "^4.21.0",
     "standard-version": "^9.5.0",
-    "ts-jest": "^29.2.3",
-    "typescript": "^5.5.3",
+    "ts-jest": "^29.2.4",
+    "typescript": "^5.5.4",
     "typescript-eslint": "^8.2.0"
   },
   "peerDependencies": {
@@ -84,6 +84,7 @@
     "name": "Manuel Fernandez",
     "email": "manferlo81@gmail.com"
   },
+  "homepage": "https://github.com/manferlo81/rollup-plugin-strip-shebang#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/manferlo81/rollup-plugin-strip-shebang.git"
@@ -91,6 +92,5 @@
   "bugs": {
     "url": "https://github.com/manferlo81/rollup-plugin-strip-shebang/issues"
   },
-  "homepage": "https://github.com/manferlo81/rollup-plugin-strip-shebang#readme",
   "license": "MIT"
 }

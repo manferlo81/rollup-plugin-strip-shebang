@@ -24,8 +24,8 @@ const stylisticRules = pluginRules('@stylistic', {
   'quote-props': rule('as-needed'),
   'arrow-parens': rule('always'),
   'member-delimiter-style': rule({}),
-  'padded-blocks': 'off',
   'brace-style': rule('1tbs'),
+  'padded-blocks': 'off',
 });
 
 const typescriptPluginConfig = config(
