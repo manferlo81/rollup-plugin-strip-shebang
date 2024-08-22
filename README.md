@@ -54,13 +54,13 @@ export default {
 
 ## Features
 
-* Target file filtering *(see [include / exclude](#include--exclude))*
-* Capture stripped shebang *(see [capture](#capture) option)*
-* Sourcemap support *(see [sourcemap](#sourcemap) option)*
+* Target file filtering *(see [include / exclude](#include--exclude-options))*
+* Capture stripped shebang *(see [capture](#capture-option) option)*
+* Sourcemap support *(see [sourcemap](#sourcemap-option) option)*
 
 ## Options
 
-### include / exclude
+### `include` / `exclude` options
 
 [minimatch](https://github.com/isaacs/minimatch) pattern to be used as filter, see `createFilter` [documentation](https://github.com/rollup/rollup-pluginutils#createfilter).
 
@@ -71,11 +71,11 @@ include: Array<string | RegExp> | string | RegExp | null;
 exclude: Array<string | RegExp> | string | RegExp | null;
 ```
 
-### capture
+### `capture` option
 
 You can pass a capture `function` or `object` to get the stripped shebang in case you need it later.
 
-#### function
+#### `capture` option as `function`
 
 ***syntax***
 
@@ -99,7 +99,7 @@ let shebang;
 console.log(shebang);
 ```
 
-#### object
+#### `capture` option as `object`
 
 ***syntax***
 
@@ -121,7 +121,7 @@ let capture = {};
 console.log(capture.shebang);
 ```
 
-### sourcemap
+### `sourcemap` option
 
 You can pass `sourcemap: false` to speed things up a bit if you don't need source maps. Anything other than `false` will default to `true`, including `null` and `undefined`.
 
