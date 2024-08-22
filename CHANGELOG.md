@@ -2,6 +2,15 @@
 
 ## Version History
 
+## [2.0.0](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.10...v2.0.0) (2024-08-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* stripShebang and types are now exported as named exports (no default export)
+
+* export as named exports ([8cdfc3e](https://github.com/manferlo81/rollup-plugin-strip-shebang/commit/8cdfc3e563d9a867279a613fddfec282a04436ce))
+
 ### [1.2.10](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.9...v1.2.10) (2020-10-29)
 
 ### [1.2.9](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.8...v1.2.9) (2020-03-12)
