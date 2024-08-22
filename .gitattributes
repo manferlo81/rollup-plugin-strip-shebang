@@ -1,10 +1,16 @@
-[core]
-    autocrlf=true
-    eol=crlf
+*         text=auto
 
-*     text=auto
-*.js     text   eol=crlf
-*.ts     text   eol=crlf
-*.json     text   eol=crlf
-*.md     text   eol=crlf
+*.ts      text   eol=lf
+*.js      text   eol=lf
+*.cjs     text   eol=lf
+*.mjs     text   eol=lf
 
+*.json    text   eol=lf
+*.yaml    text   eol=lf
+*.yml     text   eol=lf
+*.md      text   eol=lf
+
+.*rc      text   eol=lf
+.*config  text   eol=lf
+.*ignore  text   eol=lf
+.git*     text   eol=lf
