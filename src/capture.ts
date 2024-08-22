@@ -1,22 +1,19 @@
-import isCallable from 'is-callable';
 import type { CaptureOption, CaptureShebangFunction } from './types';
 
-export function processCaptureOption(capture?: CaptureOption): CaptureShebangFunction | null {
+export function processCaptureOption(option?: CaptureOption): CaptureShebangFunction | null {
 
   // return null if option is null or undefined
-  if (capture == null) return null;
+  if (option == null) return null;
+
+  // return option if it's a function
+  if (typeof option === 'function') return option;
+
+  // throw if option is not an object at this point
+  if (typeof option !== 'object') throw new TypeError(`${option as unknown as string} is not a function nor an object`);
 
   // return capture function from object
-  if (typeof capture === 'object') {
-    return (captured) => {
-      capture.shebang = captured;
-    };
-  }
-
-  // throw if option is not a function at this point
-  if (!isCallable(capture)) throw new TypeError(`${capture as unknown as string} is not a function nor an object`);
-
-  // return function
-  return capture;
+  return (captured) => {
+    option.shebang = captured;
+  };
 
 }
