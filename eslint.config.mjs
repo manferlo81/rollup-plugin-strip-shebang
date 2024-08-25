@@ -21,10 +21,12 @@ const stylisticRules = pluginRules('@stylistic', {
   indent: rule(2),
   quotes: rule('single'),
   'linebreak-style': rule('unix'),
+
   'quote-props': rule('as-needed'),
   'arrow-parens': rule('always'),
-  'member-delimiter-style': rule({}),
   'brace-style': rule('1tbs'),
+
+  'member-delimiter-style': rule({}),
   'padded-blocks': 'off',
 });
 
