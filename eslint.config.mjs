@@ -3,42 +3,64 @@ import stylistic from '@stylistic/eslint-plugin';
 import globals from 'globals';
 import { config, configs as typescriptConfigs } from 'typescript-eslint';
 
-const rule = (options) => ['error', options];
+function normalizeRuleEntry(entry) {
+  if (Array.isArray(entry)) return entry;
+  if (['off', 'warn', 'error'].includes(entry)) return entry;
+  return ['error', entry];
+}
 
-const pluginRules = (pluginName, rules) => Object.keys(rules).reduce((output, ruleName) => {
-  const pluginRuleName = `${pluginName}/${ruleName}`;
-  const ruleValue = rules[ruleName];
-  return { ...output, [pluginRuleName]: ruleValue };
-}, {});
+function createRuleNameNormalizer(pluginName) {
+  if (!pluginName) return (ruleName) => ruleName;
+  return (ruleName) => {
+    const pluginPrefix = `${pluginName}/`;
+    if (ruleName.startsWith(pluginPrefix)) return ruleName;
+    return `${pluginPrefix}${ruleName}`;
+  };
+}
 
-const eslintRules = {
+function rules(pluginName, rules) {
+  const normalizeRuleName = createRuleNameNormalizer(pluginName);
+  return Object.fromEntries(
+    Object.entries(rules).map(([ruleName, ruleEntry]) => {
+      return [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)];
+    }),
+  );
+}
+
+const eslintRules = rules(null, {
   'no-useless-rename': 'error',
   'object-shorthand': 'error',
-};
+});
 
-const stylisticRules = pluginRules('@stylistic', {
-  semi: rule('always'),
-  indent: rule(2),
-  quotes: rule('single'),
-  'linebreak-style': rule('unix'),
+const stylisticRules = rules('@stylistic', {
+  semi: 'always',
+  indent: 2,
+  quotes: 'single',
+  'linebreak-style': 'unix',
 
-  'quote-props': rule('as-needed'),
-  'arrow-parens': rule('always'),
-  'brace-style': rule('1tbs'),
+  'quote-props': 'as-needed',
+  'arrow-parens': 'always',
+  'no-extra-parens': 'all',
+  'no-extra-semi': 'error',
+  'brace-style': '1tbs',
 
-  'member-delimiter-style': rule({}),
+  'member-delimiter-style': {},
   'padded-blocks': 'off',
 });
+
+const javascriptExtensions = ['js', 'cjs', 'mjs'];
+const javascriptExtString = javascriptExtensions.join(',');
 
 const typescriptPluginConfig = config(
   ...typescriptConfigs.strictTypeChecked,
   ...typescriptConfigs.stylisticTypeChecked,
   { languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: process.cwd() } } },
-  { files: ['*.{js,cjs,mjs}'], ...typescriptConfigs.disableTypeChecked },
+  { files: [`*.{${javascriptExtString}}`], ...typescriptConfigs.disableTypeChecked },
 );
 
 export default config(
   { ignores: ['dist', 'coverage'] },
+  { files: [`*.{${javascriptExtString},ts}`] },
   { languageOptions: { globals: globals.node } },
   js.configs.recommended,
   ...typescriptPluginConfig,
