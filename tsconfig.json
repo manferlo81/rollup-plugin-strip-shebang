@@ -1,25 +1,29 @@
 {
   "compilerOptions": {
+    "lib": [],
     "target": "ESNext",
     "module": "CommonJS",
-    "moduleResolution": "Node",
-    "lib": [],
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node10",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "noUnusedLocals": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "newLine": "lf"
   },
   "include": [
-    "__test__/**/*.ts",
-    "src/**/*.ts"
+    "__test__",
+    "src"
   ],
   "exclude": [
-    "node_modules/**"
+    "node_modules",
+    "dist",
+    "coverage"
   ]
 }
