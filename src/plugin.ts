@@ -4,6 +4,8 @@ import type { Plugin } from 'rollup';
 import { processCaptureOption } from './capture';
 import type { StripShebangOptions } from './types';
 
+const shebangRegExp = /^#!.*/;
+
 export function stripShebang(options: StripShebangOptions = {}): Plugin {
 
   const {
@@ -32,7 +34,7 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
       if (!filter(id)) return;
 
       // check if shebang is present in the file
-      const match = /^#!.*/.exec(sourceCode);
+      const match = shebangRegExp.exec(sourceCode);
 
       // exit if shebang not resent
       if (!match) return;
@@ -41,9 +43,7 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
       const [shebang] = match;
 
       // store shebang
-      if (captureShebang) {
-        captureShebang(shebang);
-      }
+      captureShebang?.(shebang);
 
       // get shebang length
       const { length } = shebang;
