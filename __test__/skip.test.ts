@@ -5,30 +5,38 @@ import { mockCWD } from './tools/mock-cwd';
 describe('skip', () => {
 
   test('should skip files without shebang', () => {
-    const promise = mockCWD(() => generate('no-shebang.js', [
+    const input = 'no-shebang.js';
+    const plugins = [
       stripShebang(),
-    ]));
+    ];
+    const promise = mockCWD(() => generate(input, plugins));
     return expect(promise).resolves.toBeInstanceOf(Object);
   });
 
   test('should skip files using "include" option', () => {
-    const promise = mockCWD(() => generate('with-user-shebang.js', [
+    const input = 'with-user-shebang.js';
+    const plugins = [
       stripShebang({ include: /anything\.js/ }),
-    ]));
+    ];
+    const promise = mockCWD(() => generate(input, plugins));
     return expect(promise).resolves.toBeInstanceOf(Object);
   });
 
   test('should skip files using "include" option', () => {
-    const promise = mockCWD(() => generate('with-node-shebang.js', [
+    const input = 'with-node-shebang.js';
+    const plugins = [
       stripShebang({ include: /anything\.js/ }),
-    ]));
+    ];
+    const promise = mockCWD(() => generate(input, plugins));
     return expect(promise).resolves.toBeInstanceOf(Object);
   });
 
   test('should skip files using "exclude" option', async () => {
-    const promise = mockCWD(() => generate('with-node-shebang.js', [
+    const input = 'with-node-shebang.js';
+    const plugins = [
       stripShebang({ exclude: /with-node-shebang\.js/ }),
-    ]));
+    ];
+    const promise = mockCWD(() => generate(input, plugins));
     return expect(promise).resolves.toBeInstanceOf(Object);
   });
 

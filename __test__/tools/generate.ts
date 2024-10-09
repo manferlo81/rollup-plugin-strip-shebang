@@ -1,4 +1,5 @@
-import { Plugin, rollup, RollupLog as RollupWarning, SourceMap } from 'rollup';
+import type { Plugin, RollupLog as RollupWarning, SourceMap } from 'rollup';
+import { rollup } from 'rollup';
 
 interface GenerateResult {
   code: string;
