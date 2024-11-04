@@ -11,7 +11,7 @@ const eslintRules = normalizeRules({
 });
 
 const stylisticRules = normalizeRules('@stylistic', {
-  indent: 2,
+  quotes: 'single',
   'linebreak-style': 'unix',
   'no-extra-parens': 'all',
   'no-extra-semi': 'error',
@@ -19,9 +19,9 @@ const stylisticRules = normalizeRules('@stylistic', {
 });
 
 const stylisticPluginConfig = stylistic.configs.customize({
+  indent: 2,
   semi: true,
   arrowParens: true,
-  quotes: 'single',
   quoteProps: 'as-needed',
   braceStyle: '1tbs',
 });
@@ -30,10 +30,11 @@ const typescriptPluginConfig = config(
   ...typescriptConfigs.strictTypeChecked,
   ...typescriptConfigs.stylisticTypeChecked,
   { languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: process.cwd() } } },
-  { files: [`*.{js,cjs,mjs}`], ...typescriptConfigs.disableTypeChecked },
+  { files: ['*.{js,cjs,mjs}'], ...typescriptConfigs.disableTypeChecked },
 );
 
 export default config(
+  { files: ['*.{js,cjs,mjs,ts}'] },
   { ignores: ['dist', 'coverage'] },
   { languageOptions: { globals: globals.node } },
   js.configs.recommended,
@@ -48,22 +49,21 @@ function normalizeRuleEntry(entry) {
   return ['error', entry];
 }
 
-function createNormalizeCallback(pluginName) {
-  if (!pluginName) return ([ruleName, ruleEntry]) => [ruleName, normalizeRuleEntry(ruleEntry)];
+function normalizeRulesObject(rules, pluginName) {
+  const entries = Object.entries(rules);
+  if (!pluginName) return Object.fromEntries(
+    entries.map(
+      ([ruleName, ruleEntry]) => [ruleName, normalizeRuleEntry(ruleEntry)],
+    ),
+  );
   const pluginPrefix = `${pluginName}/`;
   const normalizeRuleName = (ruleName) => {
     if (ruleName.startsWith(pluginPrefix)) return ruleName;
     return `${pluginPrefix}${ruleName}`;
   };
-  return ([ruleName, ruleEntry]) => [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)];
-}
-
-function normalizeRulesObject(rules, pluginName) {
   return Object.fromEntries(
-    Object.entries(rules).map(
-      createNormalizeCallback(
-        pluginName,
-      ),
+    entries.map(
+      ([ruleName, ruleEntry]) => [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)],
     ),
   );
 }
