@@ -31,6 +31,7 @@
     "clean": "run-p clean:*",
     "lint:test": "eslint __test__",
     "lint:src": "eslint src",
+    "lint:config": "eslint *.config.mjs",
     "lint": "run-p lint:*",
     "test": "jest --color -w 3",
     "dev": "bundlib -dw",
