@@ -34,11 +34,11 @@
     "lint:config": "eslint *.config.mjs",
     "lint": "run-p lint:*",
     "test": "jest --color -w 3",
-    "dev": "bundlib -dw",
     "build": "bundlib -d",
+    "dev": "bundlib -dw",
     "build-ci": "run-s lint test build",
     "clean-build": "run-s clean build-ci",
-    "prerelease": "run-s clean build-ci",
+    "prerelease": "run-s clean-build",
     "release": "standard-version",
     "prepare": "husky"
   },
@@ -58,7 +58,7 @@
     "@types/is-callable": "^1.1.2",
     "@types/jest": "^29.5.14",
     "@types/mock-fs": "^4.13.4",
-    "@types/node": "^22.8.7",
+    "@types/node": "^22.9.0",
     "bundlib": "^0.21.4",
     "chokidar": "^4.0.1",
     "core-js": "^3.39.0",
@@ -69,11 +69,11 @@
     "mock-fs": "^5.4.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1",
-    "rollup": "^4.24.4",
+    "rollup": "^4.25.0",
     "standard-version": "^9.5.0",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.12.2"
+    "typescript-eslint": "^8.13.0"
   },
   "peerDependencies": {
     "rollup": "^2.0.0||^3.0.0||^4.0.0"
