@@ -1,0 +1,21 @@
+changelog:
+  exclude:
+    labels:
+      - exclude from release
+
+  categories:
+    - title: Breaking Changes
+      labels:
+        - breaking change
+
+    - title: Features
+      labels:
+        - feature
+
+    - title: Bug Fixes
+      labels:
+        - bug fix
+
+    - title: Other Changes
+      labels:
+        - change
