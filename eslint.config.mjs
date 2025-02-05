@@ -32,28 +32,25 @@ const stylisticPluginConfig = config({
   }),
 });
 
-const typescriptPluginConfig = config(
-  {
-    extends: [
-      typescriptConfigs.strictTypeChecked,
-      typescriptConfigs.stylisticTypeChecked,
-    ],
-    languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: process.cwd() } },
-  },
-  {
-    files: ['*.{js,cjs,mjs}'],
-    extends: [typescriptConfigs.disableTypeChecked],
-  },
-);
+const typescriptPluginConfig = config({
+  files: ['**/*.ts'],
+  extends: [
+    typescriptConfigs.strictTypeChecked,
+    typescriptConfigs.stylisticTypeChecked,
+  ],
+  languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: process.cwd() } },
+});
 
 export default config(
   {
-    files: ['*.{js,cjs,mjs,ts}'],
+    files: ['**/*.{js,cjs,mjs,ts}'],
     ignores: ['dist', 'coverage'],
+    extends: [
+      javascriptPluginConfig,
+      stylisticPluginConfig,
+    ],
     languageOptions: { globals: globals.node },
   },
-  javascriptPluginConfig,
-  stylisticPluginConfig,
   typescriptPluginConfig,
 );
 
@@ -78,7 +75,7 @@ function createEntryNormalizer(pluginName) {
 }
 
 function normalizeRules(pluginName, rules) {
-  if (!rules) return normalizeRules(null, pluginName);
+  if (!rules && pluginName) return normalizeRules(null, pluginName);
   const normalizeEntry = createEntryNormalizer(pluginName);
   return Object.fromEntries(Object.entries(rules).map(normalizeEntry));
 }
