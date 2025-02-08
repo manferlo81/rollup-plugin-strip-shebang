@@ -53,10 +53,16 @@ export default config(
   typescriptPluginConfig,
 );
 
-function normalizeRuleEntry(entry) {
-  if (Array.isArray(entry)) return entry;
-  if (['error', 'off', 'warn'].includes(entry)) return entry;
-  return ['error', entry];
+function normalizeRules(pluginName, rules) {
+  if (!rules && pluginName) return normalizeRules(null, pluginName);
+  const normalizeEntry = createEntryNormalizer(pluginName);
+  return Object.fromEntries(Object.entries(rules).map(normalizeEntry));
+}
+
+function createEntryNormalizer(pluginName) {
+  if (!pluginName) return ([ruleName, ruleEntry]) => [ruleName, normalizeRuleEntry(ruleEntry)];
+  const normalizeRuleName = createPluginRuleNameNormalizer(pluginName);
+  return ([ruleName, ruleEntry]) => [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)];
 }
 
 function createPluginRuleNameNormalizer(pluginName) {
@@ -67,14 +73,8 @@ function createPluginRuleNameNormalizer(pluginName) {
   };
 }
 
-function createEntryNormalizer(pluginName) {
-  if (!pluginName) return ([ruleName, ruleEntry]) => [ruleName, normalizeRuleEntry(ruleEntry)];
-  const normalizeRuleName = createPluginRuleNameNormalizer(pluginName);
-  return ([ruleName, ruleEntry]) => [normalizeRuleName(ruleName), normalizeRuleEntry(ruleEntry)];
-}
-
-function normalizeRules(pluginName, rules) {
-  if (!rules && pluginName) return normalizeRules(null, pluginName);
-  const normalizeEntry = createEntryNormalizer(pluginName);
-  return Object.fromEntries(Object.entries(rules).map(normalizeEntry));
+function normalizeRuleEntry(entry) {
+  if (Array.isArray(entry)) return entry;
+  if (['error', 'off', 'warn'].includes(entry)) return entry;
+  return ['error', entry];
 }
