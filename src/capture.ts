@@ -9,7 +9,7 @@ export function processCaptureOption(option?: CaptureOption): CaptureShebangFunc
   if (typeof option === 'function') return option;
 
   // throw if option is not an object at this point
-  if (typeof option !== 'object') throw new TypeError(`${option as unknown as string} is not a function nor an object`);
+  if (typeof option !== 'object') throw new TypeError(`${option} is not a function nor an object`);
 
   // return capture function from object
   return (captured) => {

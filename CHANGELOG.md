@@ -4,7 +4,6 @@
 
 ## [2.0.0](https://github.com/manferlo81/rollup-plugin-strip-shebang/compare/v1.2.10...v2.0.0) (2024-08-22)
 
-
 ### ⚠ BREAKING CHANGES
 
 * stripShebang and types are now exported as named exports (no default export)

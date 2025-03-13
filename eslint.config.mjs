@@ -35,6 +35,17 @@ const typescriptPluginConfig = config(
   typescriptConfigs.strictTypeChecked,
   typescriptConfigs.stylisticTypeChecked,
   { languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname } } },
+  normalizeRulesConfig('@typescript-eslint', {
+    'restrict-template-expressions': {
+      allowNever: true,
+      allowNumber: false,
+      allowBoolean: false,
+      allowNullish: false,
+      allowArray: false,
+      allowRegExp: false,
+      allowAny: false,
+    },
+  }),
   {
     ...typescriptConfigs.disableTypeChecked,
     files: ['**/*.{js,mjs,cjs}'],

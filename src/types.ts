@@ -8,5 +8,5 @@ export interface StripShebangOptions {
   readonly include?: FilterPattern;
   readonly exclude?: FilterPattern;
   readonly capture?: CaptureOption;
-  readonly sourcemap?: boolean;
+  readonly sourcemap?: boolean | null;
 }
