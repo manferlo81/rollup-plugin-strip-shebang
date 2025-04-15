@@ -1,10 +1,10 @@
-import { createFilter } from '@rollup/pluginutils';
-import MagicString from 'magic-string';
-import type { Plugin } from 'rollup';
-import { processCaptureOption } from './capture';
-import type { StripShebangOptions } from './types';
+import { createFilter } from '@rollup/pluginutils'
+import MagicString from 'magic-string'
+import type { Plugin } from 'rollup'
+import { processCaptureOption } from './capture'
+import type { StripShebangOptions } from './types'
 
-const shebangRegExp = /^#!.*/;
+const shebangRegExp = /^#!.*/
 
 export function stripShebang(options: StripShebangOptions = {}): Plugin {
 
@@ -13,16 +13,16 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
     exclude,
     capture,
     sourcemap,
-  } = options;
+  } = options
 
   // create filter
-  const filter = createFilter(include, exclude);
+  const filter = createFilter(include, exclude)
 
   // normalize capture option
-  const captureShebang = processCaptureOption(capture);
+  const captureShebang = processCaptureOption(capture)
 
   // normalize sourcemap option
-  const generateMap: boolean = sourcemap !== false;
+  const generateMap: boolean = sourcemap !== false
 
   return {
 
@@ -31,36 +31,36 @@ export function stripShebang(options: StripShebangOptions = {}): Plugin {
     transform(sourceCode, id) {
 
       // exit if filter doesn't pass the test
-      if (!filter(id)) return;
+      if (!filter(id)) return
 
       // check if shebang is present in the file
-      const match = shebangRegExp.exec(sourceCode);
+      const match = shebangRegExp.exec(sourceCode)
 
       // exit if shebang not resent
-      if (!match) return;
+      if (!match) return
 
       // get shebang from match
-      const [shebang] = match;
+      const [shebang] = match
 
       // store shebang
-      captureShebang?.(shebang);
+      captureShebang?.(shebang)
 
       // get shebang length
-      const { length } = shebang;
+      const { length } = shebang
 
       // return transformed string only if no sourcemap needs to be generated
-      if (!generateMap) return sourceCode.substring(length);
+      if (!generateMap) return sourceCode.substring(length)
 
       // create sourcemap manager
-      const ms = new MagicString(sourceCode).remove(0, length);
+      const ms = new MagicString(sourceCode).remove(0, length)
 
       // return transformed string with sourcemap
-      const code = ms.toString();
-      const map = ms.generateMap({ hires: true });
-      return { code, map };
+      const code = ms.toString()
+      const map = ms.generateMap({ hires: true })
+      return { code, map }
 
     },
 
-  };
+  }
 
 }
