@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "lib": [],
     "target": "ESNext",
     "module": "CommonJS",
     "moduleResolution": "Node10",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "lib": [],
     "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -18,8 +18,8 @@
     "newLine": "lf"
   },
   "include": [
-    "__test__",
-    "src"
+    "src",
+    "__test__"
   ],
   "exclude": [
     "dist",
