@@ -1,15 +1,15 @@
 import { createFilter } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
 import type { Plugin } from 'rollup'
-import { processCaptureOption } from './capture'
-import type { StripShebangOptions } from './types'
 
-const shebangRegExp = /^#!.*/
+import { processCaptureOption } from './capture'
+import { defaultIncludePattern, shebangRegExp } from './constants'
+import type { StripShebangOptions } from './types'
 
 export function stripShebang(options: StripShebangOptions = {}): Plugin {
 
   const {
-    include = /\.[jt]s$/,
+    include = defaultIncludePattern,
     exclude,
     capture,
     sourcemap,
