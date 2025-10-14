@@ -27,9 +27,6 @@ const importPluginConfig = config(
 )
 
 const stylisticPluginConfig = config(
-  // Disable rule until @stylistic/eslint-plugin types are fixed
-  // https://github.com/eslint-stylistic/eslint-stylistic/issues/762
-  // eslint-disable-next-line import-x/no-named-as-default-member
   pluginStylistic.configs.customize({
     indent: 2,
     semi: false,

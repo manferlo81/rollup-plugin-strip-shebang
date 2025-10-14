@@ -1,6 +1,6 @@
-import { config } from 'bundlib'
+import { defineConfig } from 'bundlib'
 
-export default config({
+export default defineConfig({
   esModule: true,
   interop: true,
   project: './tsconfig.build.json',
