@@ -1,16 +1,16 @@
-import { shebangRegExp } from '../src/constants'
-
-// /^#!.*/
+import { shebangRegExp } from '../../src/constants'
 
 describe('shebangRegExp constant', () => {
 
   test('should match shebang string', () => {
     const cases = [
+      '#! /bin/sh',
+      '#!/usr/bin/env node',
       '#!something',
       '#!something/else',
     ]
     cases.forEach((shebang) => {
-      expect(shebangRegExp.exec(shebang)).not.toBeNull()
+      expect(shebangRegExp.exec(shebang)).toEqual(expect.arrayContaining([shebang]))
     })
   })
 
@@ -18,6 +18,7 @@ describe('shebangRegExp constant', () => {
     const cases = [
       ' #!something',
       '   #!something/else',
+      'something   #!something/else',
     ]
     cases.forEach((shebang) => {
       expect(shebangRegExp.exec(shebang)).toBeNull()
