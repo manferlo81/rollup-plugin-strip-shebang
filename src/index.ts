@@ -1,8 +1,12 @@
 export { stripShebang } from './plugin'
+
 export type {
-  CaptureShebangFunction as CaptureFunction,
+  CaptureFunction,
+  CaptureObject,
   CaptureOption,
-  CaptureShebangFunction,
-  CaptureShebangObject,
-  StripShebangOptions,
+  CaptureFunction as CaptureShebangFunction,
+  CaptureObject as CaptureShebangObject,
+  Options,
+  Options as PluginOptions,
+  Options as StripShebangOptions,
 } from './types'

@@ -1,10 +1,10 @@
 import type { FilterPattern } from '@rollup/pluginutils'
 
-export type CaptureShebangObject = Record<string, string>
-export type CaptureShebangFunction = (shebang: string) => void
-export type CaptureOption = CaptureShebangObject | CaptureShebangFunction | null
+export type CaptureObject = Record<string, string>
+export type CaptureFunction = (shebang: string) => void
+export type CaptureOption = CaptureObject | CaptureFunction | null
 
-export interface StripShebangOptions {
+export interface Options {
   readonly include?: FilterPattern
   readonly exclude?: FilterPattern
   readonly capture?: CaptureOption

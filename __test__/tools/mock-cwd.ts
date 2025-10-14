@@ -1,6 +1,6 @@
 import mock, { restore as restoreMock } from 'mock-fs'
 
-function fileContent(...lines: (string | null)[]) {
+function fileContent(...lines: Array<string | null>) {
   return lines.map((line) => `${line ?? ''}\n`).join('')
 }
 

@@ -1,6 +1,6 @@
-import type { CaptureOption, CaptureShebangFunction } from './types'
+import type { CaptureFunction, CaptureOption } from './types'
 
-export function processCaptureOption(option?: CaptureOption): CaptureShebangFunction | null {
+export function processCaptureOption(option?: CaptureOption): CaptureFunction | null {
 
   // return null if option is null or undefined
   if (option == null) return null
@@ -9,7 +9,7 @@ export function processCaptureOption(option?: CaptureOption): CaptureShebangFunc
   if (typeof option === 'function') return option
 
   // throw if option is not an object at this point
-  if (typeof option !== 'object') throw new TypeError(`${option} is not a function nor an object`)
+  if (typeof option !== 'object') throw new TypeError('capture option should be a function or an object')
 
   // return capture function from object
   return (captured) => {

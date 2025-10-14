@@ -4,9 +4,9 @@ import type { Plugin } from 'rollup'
 
 import { processCaptureOption } from './capture'
 import { defaultIncludePattern, shebangRegExp } from './constants'
-import type { StripShebangOptions } from './types'
+import type { Options } from './types'
 
-export function stripShebang(options: StripShebangOptions = {}): Plugin {
+export function stripShebang(options: Options = {}): Plugin {
 
   const {
     include = defaultIncludePattern,

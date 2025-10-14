@@ -15,7 +15,7 @@ describe('capture option', () => {
     ]
     invalidCaptureOptions.forEach((invalid) => {
       const createPlugin = () => stripShebang({ capture: invalid as never })
-      expect(createPlugin).toThrow('is not a function nor an object')
+      expect(createPlugin).toThrow('should be a function or an object')
     })
   })
 

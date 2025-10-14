@@ -1,26 +1,29 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
-    "moduleResolution": "Node10",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "lib": [],
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitOverride": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "declaration": true,
-    "declarationMap": true,
-    "newLine": "lf"
-  },
   "include": [
     "src",
     "__test__"
   ],
+  "compilerOptions": {
+    // Module
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node10",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "lib": [],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    // Strict
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // Others
+    "declaration": true,
+    "declarationMap": true,
+    "newLine": "lf"
+  },
   "exclude": [
     "dist",
     "coverage"
