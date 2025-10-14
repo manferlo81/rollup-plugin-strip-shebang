@@ -1,2 +1,2 @@
 export const shebangRegExp = /^#!.*/
-export const defaultIncludePattern = /\.[jt]s$/
+export const defaultIncludePattern = /\.[mc]?[jt]s$/

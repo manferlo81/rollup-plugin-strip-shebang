@@ -13,7 +13,7 @@ A [Rollup.js](https://github.com/rollup/rollup) plugin to remove and optionally 
 
 ## DEPRECATION NOTICE
 
-As of Rollup v3 shebang will be stripped by rollup itself, but you might still need this plugin if you need to capture the shebang in order to add it back later.
+As of Rollup v3 shebang will be stripped by rollup itself, but you might still need this plugin if you need to capture the shebang in order to add it back later. This allows you to control the exact shebang string to be used.
 
 As of [Rollup v4](https://github.com/rollup/rollup/blob/master/CHANGELOG.md#400) shebang will be stripped out and added back into the output file ([check it out here](https://github.com/rollup/rollup/pull/5163)), making this plugin almost unnecessary.
 
@@ -54,20 +54,29 @@ export default {
 
 ## Features
 
-* Target file filtering *(see [include / exclude](#include--exclude-options))*
-* Capture stripped shebang *(see [capture](#capture-option) option)*
+* Target file filtering *(see [include](#include-option) an [exclude](#exclude-option) options)*
+* Capture stripped shebang for later use *(see [capture](#capture-option) option)*
 * Sourcemap support *(see [sourcemap](#sourcemap-option) option)*
 
 ## Options
 
-### `include` / `exclude` options
+### `include` option
+
+[minimatch](https://github.com/isaacs/minimatch) pattern to be used as filter, see `createFilter` [documentation](https://github.com/rollup/rollup-pluginutils#createfilter). By default the plugin will only process files with `.js`, `.mjs`, `.cjs`, `.ts`, `.mts`, and `.cts` extensions, you can use this option to override that behavior.
+
+***syntax***
+
+```typescript
+include: Array<string | RegExp> | string | RegExp | null;
+```
+
+### `exclude` option
 
 [minimatch](https://github.com/isaacs/minimatch) pattern to be used as filter, see `createFilter` [documentation](https://github.com/rollup/rollup-pluginutils#createfilter).
 
 ***syntax***
 
 ```typescript
-include: Array<string | RegExp> | string | RegExp | null;
 exclude: Array<string | RegExp> | string | RegExp | null;
 ```
 
@@ -151,4 +160,4 @@ sourcemap: boolean = true;
 
 ## License
 
-[MIT](LICENSE) &copy; 2019-2024 [Manuel Fernández](https://github.com/manferlo81)
+[MIT](LICENSE) &copy; 2019-2025 [Manuel Fernández](https://github.com/manferlo81)
