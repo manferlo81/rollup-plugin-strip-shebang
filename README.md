@@ -160,4 +160,4 @@ sourcemap: boolean = true;
 
 ## License
 
-[MIT](LICENSE) &copy; 2019-2024 [Manuel Fernández](https://github.com/manferlo81)
+[MIT](LICENSE) &copy; 2019-2025 [Manuel Fernández](https://github.com/manferlo81)
