@@ -13,3 +13,61 @@ updates:
 
     assignees:
       - manferlo81
+
+    groups:
+      lint:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - eslint
+          - globals
+          - typescript-eslint
+          - "@eslint/*"
+          - "@*/eslint-plugin"
+          - eslint-plugin-*
+          - eslint-*
+
+      test:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - jest
+          - ts-jest
+          - "@types/jest"
+          - mock-fs
+          - rollup
+
+      types:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - "@types/*"
+          - typescript
+
+      build:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - "@babel/*"
+          - core-js
+          - bundlib
+
+      others:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+
+      runtime-dependencies:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
