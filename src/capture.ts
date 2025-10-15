@@ -1,5 +1,9 @@
-import type { CaptureFunction, CaptureOption } from './types'
+import type { CaptureFunction, CaptureObject, CaptureOption } from './types'
 
+export function processCaptureOption(option?: null): null
+export function processCaptureOption<F extends CaptureFunction>(option?: F): F
+export function processCaptureOption(option?: CaptureObject): CaptureFunction
+export function processCaptureOption(option?: CaptureOption): CaptureFunction | null
 export function processCaptureOption(option?: CaptureOption): CaptureFunction | null {
 
   // return null if option is null or undefined

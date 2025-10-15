@@ -1,3 +1,4 @@
+import type { CaptureObject } from '../../src'
 import { stripShebang } from '../../src'
 import { generate } from '../tools/generate'
 import { filenameShebangNode, filenameShebangUser, mockCWD, shebangNode, shebangUser } from '../tools/mock-cwd'
@@ -64,19 +65,23 @@ describe('"capture" option', () => {
       return Promise.all(cases.map(async ({ filename, expectedShebang }) => {
 
         // Declare empty object to receive captured shebang
-        const capture: Record<string, string> = {}
+        const initial = {}
+        const capture: CaptureObject = { ...initial }
 
         // Generate code
         const plugin = stripShebang({ capture })
         await generate(filename, [plugin])
 
         // shebang object should have a "shebang" property now
-        return { shebang: capture.shebang, expectedShebang }
+        return { initial, capture, expectedShebang }
       }))
     })
 
     // Expect all captured shebangs to be as expected
-    results.forEach(({ shebang, expectedShebang }) => expect(shebang).toBe(expectedShebang))
+    results.forEach(({ initial, capture, expectedShebang }) => {
+      expect(initial).toStrictEqual({})
+      expect(capture).toStrictEqual({ shebang: expectedShebang })
+    })
 
   })
 

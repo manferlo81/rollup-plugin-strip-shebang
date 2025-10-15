@@ -15,46 +15,45 @@ export function stripShebang(options: Options = {}): Plugin {
     sourcemap,
   } = options
 
-  // create filter
+  // Create filter
   const filter = createFilter(include, exclude)
 
-  // normalize capture option
+  // Normalize capture option
   const captureShebang = processCaptureOption(capture)
 
-  // normalize sourcemap option
+  // Normalize sourcemap option
   const generateMap: boolean = sourcemap !== false
 
+  // Return implementation
   return {
 
     name: 'strip-shebang',
 
     transform(sourceCode, id) {
 
-      // exit if filter doesn't pass the test
+      // Exit if filter doesn't pass the test
       if (!filter(id)) return
 
-      // check if shebang is present in the file
+      // Exit if shebang is not resent
       const match = shebangRegExp.exec(sourceCode)
-
-      // exit if shebang not resent
       if (!match) return
 
-      // get shebang from match
+      // Get shebang from match
       const [shebang] = match
 
-      // store shebang
-      captureShebang?.(shebang)
+      // Capture shebang is user provided "capture" option
+      if (captureShebang) captureShebang(shebang)
 
-      // get shebang length
+      // Get shebang length
       const { length } = shebang
 
-      // return transformed string only if no sourcemap needs to be generated
+      // Return transformed string only if no sourcemap needs to be generated
       if (!generateMap) return sourceCode.substring(length)
 
-      // create sourcemap manager
+      // Create sourcemap manager
       const ms = new MagicString(sourceCode).remove(0, length)
 
-      // return transformed string with sourcemap
+      // Return transformed string with sourcemap
       const code = ms.toString()
       const map = ms.generateMap({ hires: true })
       return { code, map }
