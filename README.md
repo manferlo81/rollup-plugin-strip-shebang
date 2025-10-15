@@ -17,6 +17,17 @@ As of Rollup v3 shebang will be stripped by rollup itself, but you might still n
 
 As of [Rollup v4](https://github.com/rollup/rollup/blob/master/CHANGELOG.md#400) shebang will be stripped out and added back into the output file ([check it out here](https://github.com/rollup/rollup/pull/5163)), making this plugin almost unnecessary.
 
+## Index
+
+* [Install](#install)
+* [Usage](#usage)
+* [Features](#features)
+* [Options](#options)
+  * [include](#include-option)
+  * [exclude](#exclude-option)
+  * [capture](#capture-option)
+  * [sourcemap](#sourcemap-option)
+
 ## Install
 
 ```bash
