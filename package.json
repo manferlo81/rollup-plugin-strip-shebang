@@ -60,7 +60,7 @@
     "@stylistic/eslint-plugin": "^5.4.0",
     "@types/jest": "^30.0.0",
     "@types/mock-fs": "^4.13.4",
-    "@types/node": "^24.7.2",
+    "@types/node": "^24.8.1",
     "bundlib": "^0.21.9",
     "chokidar": "^4.0.3",
     "core-js": "^3.46.0",
