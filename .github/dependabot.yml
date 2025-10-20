@@ -65,9 +65,13 @@ updates:
         update-types:
           - minor
           - patch
+        patterns:
+          - "*"
 
       runtime-dependencies:
         dependency-type: production
         update-types:
           - minor
           - patch
+        patterns:
+          - "*"
