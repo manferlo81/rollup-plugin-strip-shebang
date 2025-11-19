@@ -57,17 +57,17 @@
   "devDependencies": {
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
-    "@stylistic/eslint-plugin": "^5.5.0",
+    "@stylistic/eslint-plugin": "^5.6.0",
     "@types/jest": "^30.0.0",
     "@types/mock-fs": "^4.13.4",
     "@types/node": "^24.8.1",
     "bundlib": "^0.21.9",
     "chokidar": "^4.0.3",
     "core-js": "^3.46.0",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.1",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import-x": "^4.16.1",
-    "globals": "^16.4.0",
+    "globals": "^16.5.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
     "mock-fs": "^5.5.0",
@@ -77,7 +77,7 @@
     "standard-version": "^9.5.0",
     "ts-jest": "^29.4.5",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1"
+    "typescript-eslint": "^8.47.0"
   },
   "peerDependencies": {
     "rollup": "^2.0.0||^3.0.0||^4.0.0"
